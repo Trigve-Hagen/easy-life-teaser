@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Conversion Templates — LifeModel Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+</style>
+</head>
+<body data-next-step-page="conversion-templates"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
+    <li><a href="/agent.html">Agent</a></li>
+    <li><a href="/form-filler.html">Fill a Form</a></li>
+    <li><a href="/email.html">Email</a></li>
+    <li><a href="/budget.html">Budget</a></li>
+    <li><a href="/employer.html">Employer</a></li>
+    <li><a href="/projects.html">Projects</a></li>
+    <li><a href="/business-stats.html">Business Stats</a></li>
+    <li><a href="/marketing.html">Marketing</a></li>
+    <li><a href="/business-model.html">Business Model</a></li>
+    <li><a href="/managed-sites.html">Managed Sites</a></li>
+    <li><a href="/infra.html">Server Infra</a></li>
+    <li><a href="/security.html">Security</a></li>
+    <li><a href="/conversion-templates.html" class="active">Conversion Templates</a></li>
+    <li><a href="/jobs.html">Jobs</a></li>
+    <li><a href="/goals.html">Goals</a></li>
+    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
+        <li><a href="/maintenance.html">System maintenance</a></li>
+        <li><a href="/leftovers.html">Software leftovers</a></li>
+        <li><a href="/archive.html">Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="/upload.html">Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<h2>Phase 28: JSON Field Conversion Templates — Preview</h2>
+<h3>Documentation</h3>
+    <p><strong>What this is:</strong> a reusable way to rename/move fields from one JSON shape into another — pure data movement, never arbitrary code. Three surfaces share the same engine: this page (free, saved templates, for you), the public <code>gwm_site</code> page (anonymous, $1.99/conversion, no account), and — once Step 230 lands — unlimited conversions bundled into the existing $9.99/mo LifeModel subscription. Only this page is built so far.</p>
+    <p><strong>Templates:</strong> click <strong>+ Add template</strong> to create a named, reusable list of field mappings. Templates aren't tied to a profile or company — the same engine that powers this page also powers the public, anonymous <code>gwm_site</code> tool.</p>
+    <p><strong>Field mappings:</strong> click <strong>Manage</strong> on a template, then <strong>+ Add mapping</strong> — a source field (dot-path into the input, e.g. <code>address.city</code>), a target field (dot-path in the output), and a transform: <strong>Rename</strong>/<strong>Copy</strong> both move the value as-is, <strong>Flatten</strong> spreads a nested object's own keys under the target path, and <strong>Stringify</strong> writes the value as a JSON string. A source field missing from a given input is skipped, never a crash; two mappings pointed at the same target field — last one wins, the real, documented behavior.</p>
+    <p><strong>Try it:</strong> paste or load sample JSON under a template's Try it panel to see a live before/after preview as you add or remove mappings — computed by the same <code>json_field_mapper.py</code> engine the public $1.99 page's JavaScript port mirrors.</p>
+    <p><strong>Apply to a file:</strong> upload a real JSON file under a template and it downloads the converted result immediately — stateless, nothing you upload is stored anywhere by this page.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open the <a href="/conversion-templates.html">Conversion Templates</a> page and click <strong>+ Add template</strong>.</li>
+      <li>Click <strong>Manage</strong> on it, then <strong>+ Add mapping</strong> a couple of times — try a plain rename and a flatten.</li>
+      <li>Click <strong>Load sample data</strong> under Try it and watch the before/after preview update.</li>
+      <li>Edit the sample JSON directly and confirm the preview updates as you type.</li>
+      <li>Upload a real JSON file under Apply to a file and confirm the downloaded result matches what the preview showed.</li>
+    </ol>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+</div>
+
+</main>
+
+<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/sidenav.js"></script>
+</body>
+</html>

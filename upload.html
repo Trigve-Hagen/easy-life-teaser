@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Documents — LifeModel Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+</style>
+</head>
+<body><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
+    <li><a href="/agent.html">Agent</a></li>
+    <li><a href="/form-filler.html">Fill a Form</a></li>
+    <li><a href="/email.html">Email</a></li>
+    <li><a href="/budget.html">Budget</a></li>
+    <li><a href="/employer.html">Employer</a></li>
+    <li><a href="/projects.html">Projects</a></li>
+    <li><a href="/business-stats.html">Business Stats</a></li>
+    <li><a href="/marketing.html">Marketing</a></li>
+    <li><a href="/business-model.html">Business Model</a></li>
+    <li><a href="/managed-sites.html">Managed Sites</a></li>
+    <li><a href="/infra.html">Server Infra</a></li>
+    <li><a href="/security.html">Security</a></li>
+    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
+    <li><a href="/jobs.html">Jobs</a></li>
+    <li><a href="/goals.html">Goals</a></li>
+    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
+        <li><a href="/maintenance.html">System maintenance</a></li>
+        <li><a href="/leftovers.html">Software leftovers</a></li>
+        <li><a href="/archive.html">Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="/upload.html" class="active">Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<h2>Phase 1: Local Data Vault — Preview</h2>
+<h3>Documentation</h3>
+    <p>Your personal vault, split across two local SQLite databases: <code>personal_vault.db</code> holds everyday form-filler data (name, addresses, emails, phone numbers, websites, custom fields), and <code>personal_identity.db</code> holds sensitive identity documents (SSN, driver's license, passport) in a separate file kept out of routine backups. Every profile can have as many addresses/emails/phone numbers as you need, each markable "primary." Everything is served through the FastAPI backend's <code>/api/profile</code> family of endpoints, proxied by nginx at <code>/api/</code>.</p>
+    <p><strong>Document vault:</strong> the <a href="/upload.html">Documents</a> page is a general filing cabinet for every filled-out form you have — organized into life-category folders (Taxes, Employment, Insurance, and more; add your own too). Every upload is scanned for text automatically, and the vault looks for facts it can offer to prefill elsewhere — an employer name, a pay amount, a hire date. Nothing gets written to your real Profile or Budget data until you review a suggestion and click <strong>Apply</strong> yourself; a document that can't be scanned (a photo with no text layer, for instance) just shows that honestly instead of guessing. The page also shows exactly where your files live on disk.</p>
+    <p><strong>Starting from zero:</strong> if you have no profile yet, the Documents page leads with a "Get started" upload — pick any document with your basic info on it (mail, an ID, a bill) and it reads out first/last name and address for you to check over an <strong>Accept &amp; create my profile</strong> button, editable inline before you confirm. Every upload, before or after that first profile exists, also gets an auto-suggested folder (a keyword match on the filename/text, shown before you save so you can always change it).</p>
+    <p><strong>Finding documents already on your computer:</strong> further down the same page, you can register specific folders (like Downloads) for LifeModel to search for more documents — nothing outside a folder you've explicitly added is ever looked at, and anything under a Filesystem-page protected path is skipped and shown as blocked, never silently moved. Every found file waits in a queue for you to <strong>Import</strong> or <strong>Skip</strong> individually by default. An optional <strong>auto-import</strong> switch (off by default, with a one-time warning before you turn it on) lets it keep filing what it's confident about on its own the next time you scan — it still leaves anything low-confidence or sensitive for you to review by hand either way.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open the <a href="/profile.html">Profile</a> page.</li>
+      <li>Click <strong>+ New profile</strong>, fill in your name and any basic info, then <strong>Create profile</strong> — or, on the <a href="/upload.html">Documents</a> page instead, upload a document and let the "Get started" flow build your first profile from it.</li>
+      <li>In the Addresses / Emails / Phone Numbers / Websites sections, click <strong>+ Add</strong>, fill the small form, and save. Check "Primary" on the one you want the form-filler agent (Phase 2) to prefer.</li>
+      <li>If you need SSN/license/passport stored, use the <strong>Identity Documents</strong> section — it's visibly marked "Sensitive" and lives in a separate database file.</li>
+      <li>Everything saves immediately — there's no separate "save profile" step for child items.</li>
+      <li>Open the <a href="/upload.html">Documents</a> page. Pick a profile and a folder, then <strong>Upload &amp; scan</strong> a document — a pay stub or W-2 works well.</li>
+      <li>Click <strong>Find fillable facts</strong> on the uploaded document. Review each suggestion (what it found, how confident, and where it would go), then click <strong>Apply</strong> on the ones you want — or <strong>Dismiss</strong> the rest. Nothing is written until you click Apply.</li>
+      <li>Under <strong>Find documents on this computer</strong>, add a folder (e.g. your Downloads folder) and click <strong>Scan now</strong>. Review each candidate's guessed folder before clicking <strong>Import</strong>, or <strong>Skip</strong> it.</li>
+    </ol>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+</div>
+
+</main>
+
+<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/sidenav.js"></script>
+</body>
+</html>

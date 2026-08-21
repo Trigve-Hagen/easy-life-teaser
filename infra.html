@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Server Infra — LifeModel Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+</style>
+</head>
+<body data-next-step-page="infra"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
+    <li><a href="/agent.html">Agent</a></li>
+    <li><a href="/form-filler.html">Fill a Form</a></li>
+    <li><a href="/email.html">Email</a></li>
+    <li><a href="/budget.html">Budget</a></li>
+    <li><a href="/employer.html">Employer</a></li>
+    <li><a href="/projects.html">Projects</a></li>
+    <li><a href="/business-stats.html">Business Stats</a></li>
+    <li><a href="/marketing.html">Marketing</a></li>
+    <li><a href="/business-model.html">Business Model</a></li>
+    <li><a href="/managed-sites.html">Managed Sites</a></li>
+    <li><a href="/infra.html" class="active">Server Infra</a></li>
+    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
+    <li><a href="/jobs.html">Jobs</a></li>
+    <li><a href="/goals.html">Goals</a></li>
+    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
+        <li><a href="/maintenance.html">System maintenance</a></li>
+        <li><a href="/leftovers.html">Software leftovers</a></li>
+        <li><a href="/archive.html">Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="/upload.html">Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<h2>Phase 34: Capacity Gating, Multi-Region Scaling &amp; Internationalization — Preview</h2>
+<h3>Documentation</h3>
+    <p><strong>What's real so far — Step 281, the Server Infra page:</strong> <a href="/infra.html">Server Infra</a> shows real, read-only numbers pulled from the shared "Global" EC2 instance every 5 minutes by an installed cron job (<code>backend/infra_monitor_agent.py</code> + <code>backend/scripts/run_infra_snapshot.py</code>), over the same SSM tunnel the deploy scripts already use — never a new credential path. It shows: disk space used/free, and one row per deployed app/service (<code>gwm_site</code>, <code>product_backend</code>, <code>marketplace_backend</code>, and <code>lifemodel-backend</code>, which also runs on that shared instance but — confirmed by direct inspection — isn't routed by nginx, so it's shown with a "not nginx-routed" badge rather than hidden) with its size on disk, which systemd service (if any) runs it, and whether it's actually up right now. It also shows real per-page hit counts parsed from the nginx access log, attributed to whichever service nginx's own routing sends that path to — a running total plus a "last 5-minute window" figure, deliberately labeled "recent unique IPs" rather than "concurrent viewers" since a passive log parse can't measure that, and stated plainly as raw counts that include bots/scanners/probe traffic (a real <code>/.env</code> credential-probe line shows up correctly, not filtered out). Adding a new site/service to this page is a one-line entry in <code>infra_monitor_agent.py</code>'s <code>SITES</code> list — nothing else needs to change.</p>
+    <p><strong>Also real — Steps 283-285:</strong> the same <a href="/infra.html">Server Infra</a> page now also shows <strong>Managed client sites</strong> (Step 283) — every Phase 25 client site with a stored SSH credential gets a real disk reading here too, reusing Step 169's exact SSH connection code; a site with no SSH credential shows "not monitored," never a guessed number. A <strong>View Server Infra</strong> link on each site's card in Managed Sites deep-links here. Every not-active registered service now gets one automatic, logged, rate-limited restart attempt per poll (Step 284, capped at 3/hour — past that it's flagged "needs manual attention" instead of retried forever). And a new <strong>OS packages</strong> panel (Step 285) shows real upgradable/orphaned package lists detected every poll — actually applying an update or removal always requires a separate <strong>Propose</strong> then <strong>Confirm &amp; apply</strong> click, the same propose-then-confirm split Phase 25 Step 173 already uses, deliberately not loosened just because it's our own shared instance.</p>
+    <p><strong>Also real — Steps 287-288:</strong> the OS packages panel now has a sibling <strong>Application dependencies</strong> panel showing each of our own services' outdated pinned Python packages (from their own <code>requirements.txt</code>, as actually installed) — a distinct layer from OS packages, detection-only, no apply mechanism. Every outdated package (OS or app-level) now carries a real, computed <strong>risk</strong> badge (Step 288) — a major-version jump is "breaking likely," a minor/patch bump is "likely safe" — verified live against a real case: <code>bcrypt 4.3.0 → 5.0.0</code> on <code>marketplace_backend</code> was correctly flagged. A "breaking likely" (or unfetchable-comparison "unknown") package is excluded from the routine bulk **Propose** action by default and needs its own individually-named "review and propose anyway" click. A **View changelog** button fetches a real changelog on demand (Debian's for OS packages, PyPI's for app packages) — never eagerly on every poll, since a single package's changelog can run hundreds of KB.</p>
+    <p class="notice"><strong>Still planned, not built:</strong> the client-capacity threshold gate and signup-closed messaging (Steps 275-276), reviewed AWS provisioning and data migration to new instances (Steps 277-278), signup geolocation and new-country expansion signals (Step 279), and the language switcher (Step 280). See <code>CLAUDE_PLAN.md</code>'s Phase 34 for the full step-by-step design, including the real EC2 instance numbers (2 vCPUs, ~1GB RAM, already using swap) that grounded the plan.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open <a href="/infra.html">Server Infra</a> from the side menu.</li>
+      <li>Read the disk gauge at the top — used vs. free space on the shared instance, as of the last poll.</li>
+      <li>Scroll to "Deployed apps &amp; services" — each row shows a real size, service name, and a running/stopped badge (plus a note if it was recently auto-restarted).</li>
+      <li>Scroll to "Managed client sites" — a Phase 25 site with an SSH credential on file shows its own real disk usage here.</li>
+      <li>Scroll to "OS packages" — review the real upgradable/orphaned lists, click <strong>Propose</strong>, then <strong>Confirm &amp; apply</strong> only when you actually want that change applied.</li>
+      <li>Scroll to "Page hits" — expand a site's list to see real per-page request counts, most-hit pages first.</li>
+      <li>Click <strong>Refresh now</strong> to trigger a poll immediately instead of waiting for the next 5-minute cron run.</li>
+    </ol>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+</div>
+
+</main>
+
+<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/sidenav.js"></script>
+</body>
+</html>

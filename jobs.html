@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Jobs — LifeModel Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+</style>
+</head>
+<body><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
+    <li><a href="/agent.html">Agent</a></li>
+    <li><a href="/form-filler.html">Fill a Form</a></li>
+    <li><a href="/email.html">Email</a></li>
+    <li><a href="/budget.html">Budget</a></li>
+    <li><a href="/employer.html">Employer</a></li>
+    <li><a href="/projects.html">Projects</a></li>
+    <li><a href="/business-stats.html">Business Stats</a></li>
+    <li><a href="/marketing.html">Marketing</a></li>
+    <li><a href="/business-model.html">Business Model</a></li>
+    <li><a href="/managed-sites.html">Managed Sites</a></li>
+    <li><a href="/infra.html">Server Infra</a></li>
+    <li><a href="/security.html">Security</a></li>
+    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
+    <li><a href="/jobs.html" class="active">Jobs</a></li>
+    <li><a href="/goals.html">Goals</a></li>
+    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
+        <li><a href="/maintenance.html">System maintenance</a></li>
+        <li><a href="/leftovers.html">Software leftovers</a></li>
+        <li><a href="/archive.html">Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="/upload.html">Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<h2>Phase 4: Job Application Automation (Indeed.com) — Preview</h2>
+<h3>Documentation</h3>
+    <p>Search Indeed, draft a resume from your actual vault data, and prepare a real Easy Apply submission for review — reusing Phase 2's AI field-mapping tool rather than a second matcher. Preparing an application logs in and fills the Easy Apply form but never clicks Submit; only the separate, explicit <strong>Submit application</strong> action does that, per the Security Checklist's "no silent auto-apply" rule. A prepared application's mapped fields are the same <code>FormFillRun</code>/<code>FormFieldMapping</code> rows Phase 2's Agent page already uses, so they can be reviewed/edited there too.</p>
+    <p>Once a job-search account (Email page) has the job-search categories seeded, real recruiter responses are linked back to the matching Application automatically (fuzzy-matched on company/job title): a rejection/offer/follow-up email just updates the application's status locally, while an interview request or recruiter screen drafts a calendar event proposal — reusing Phase 3's calendar integration — that only touches your real calendar once you explicitly confirm it, at which point the application flips to "interview scheduled."</p>
+    <p class="notice"><strong>Real-world caveats:</strong> Indeed's page structure and bot-detection can change or block automated login/search at any time — if search or prepare fails, that's Indeed's side, not a local bug. A resume PDF render requires Playwright's Chromium browser to be installed on this machine the same way Phase 2's form-filler does.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open the <a href="/jobs.html">Jobs</a> page and pick a profile.</li>
+      <li>Under <strong>Job board accounts</strong>, add your Indeed login — the password is stored via your OS's secure credential store, never as plain text.</li>
+      <li>Under <strong>Search criteria</strong>, add keywords/location/remote preference, then click <strong>Search Indeed</strong> on that row.</li>
+      <li>Under <strong>Resume versions</strong>, click <strong>Draft new resume</strong> — it's built only from your actual Profile/CustomFields data, then review and <strong>Approve</strong> it (and optionally <strong>Render PDF</strong> to get a downloadable file).</li>
+      <li>Back in the search results, pick your approved resume from the dropdown and click <strong>Create application</strong> on a posting.</li>
+      <li>In <strong>Applications</strong>, click <strong>Prepare (fill Easy Apply)</strong> — this really logs in and fills the form, then stops. Review the result, then click <strong>Submit application</strong> to actually apply (you'll be asked to confirm).</li>
+      <li>On the <a href="/email.html">Email</a> page, select the account you use for job hunting and click <strong>+ Seed job-search categories</strong> in the Categories section so recruiter responses link back here automatically.</li>
+      <li>Check <strong>Interview proposals</strong> on this page for any auto-drafted interview times — <strong>Confirm &amp; push</strong> to add it to your real calendar and mark the application scheduled.</li>
+    </ol>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+</div>
+
+</main>
+
+<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/sidenav.js"></script>
+</body>
+</html>

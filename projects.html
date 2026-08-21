@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Projects — LifeModel Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+</style>
+</head>
+<body data-next-step-page="projects"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
+    <li><a href="/agent.html">Agent</a></li>
+    <li><a href="/form-filler.html">Fill a Form</a></li>
+    <li><a href="/email.html">Email</a></li>
+    <li><a href="/budget.html">Budget</a></li>
+    <li><a href="/employer.html">Employer</a></li>
+    <li><a href="/projects.html" class="active">Projects</a></li>
+    <li><a href="/business-stats.html">Business Stats</a></li>
+    <li><a href="/marketing.html">Marketing</a></li>
+    <li><a href="/business-model.html">Business Model</a></li>
+    <li><a href="/managed-sites.html">Managed Sites</a></li>
+    <li><a href="/infra.html">Server Infra</a></li>
+    <li><a href="/security.html">Security</a></li>
+    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
+    <li><a href="/jobs.html">Jobs</a></li>
+    <li><a href="/goals.html">Goals</a></li>
+    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
+        <li><a href="/maintenance.html">System maintenance</a></li>
+        <li><a href="/leftovers.html">Software leftovers</a></li>
+        <li><a href="/archive.html">Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="/upload.html">Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<h2>Phase 35: Project Tracker &amp; Pluggable Professional Workflows — Preview</h2>
+<h3>Documentation</h3>
+    <p>Two connected ideas on the new <a href="/projects.html">Projects</a> page. First, a real <code>Projects</code> table covering both <strong>employer</strong> and <strong>personal</strong> projects — a title, description, status, and (optionally) a real local <code>repo_path</code>. An employer project can optionally point at a real Phase 9 <code>EmployerProjectAssignment</code> via <code>linked_assignment_id</code> — that's never a second copy of its due date or email-tracking badge, just a reference, so the two never quietly drift apart.</p>
+    <p>Second, a <strong>Workflow Template</strong>: an ordered list of stages a project can link to for staged "what's done, what's next" tracking. <strong>Naming note:</strong> this is deliberately never called a "Skill" anywhere in the code, even though it started from a request to add a "skill uploader" — Phase 17 already has a real, unrelated <code>Skill</code> table (career proficiencies like "Python" or "public speaking"). A template is pure structured data — name, profession label, and an ordered list of stage titles/descriptions — <strong>never executable code</strong>, so importing one (paste the same JSON <strong>Export</strong> produces) carries none of the trust/sandboxing questions an actual software plugin would raise.</p>
+    <p>Marking a stage complete is always an explicit click — nothing here is ever inferred or auto-completed, the same rule Phase 9's email-seen badges already follow. The <strong>recommended next step</strong> banner is just the first stage (in order, filtered to whether you marked the project "new" or "existing") that doesn't have a completion record yet. Separately, if a project has a real <code>repo_path</code>, a <strong>suggested start</strong> banner does a best-effort check against real files on disk — e.g. a stage whose hint is "CLAUDE_PLAN.md and AGENT.md both exist" is checked literally. Most stages describe a process, not a file signature, so most of the time this honestly says "can't verify automatically, confirm yourself" rather than guessing — it's a starting point, never presented with the same confidence as a stage you actually checked off.</p>
+    <p>The built-in <strong>Software Development (IDE)</strong> template (seeded on demand, never force-recreated if you edit or delete it) is the user's own real described methodology: set up the project (new only) &rarr; caveman build, functionality first, theme second (new only) &rarr; build out the plan &rarr; describe each page's functionality &rarr; write that page's tests &rarr; agent-run the tests &rarr; manually run the tests. It exists specifically to prove the generic template mechanism works for something real, not just a schema nobody's data has gone through — any other profession's workflow (a Photoshop-based design pass, for instance) can be built or imported through the exact same UI, no code changes required.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open <a href="/projects.html">Projects</a>, pick a profile, and click <strong>Seed built-in "Software Development (IDE)" template</strong> under Workflow templates.</li>
+      <li>Click <strong>+ Add project</strong> — pick Personal or Employer, give it a real title, and (if you want the repo-detection banner) a real local <code>repo_path</code>. Link the seeded template.</li>
+      <li>Click <strong>Show stages &amp; recommendation</strong> on that project — read the "Recommended next" banner, and (if you set a real <code>repo_path</code>) the "Suggested start" banner.</li>
+      <li>Check a stage's box to mark it complete and watch the recommended-next banner move to the next stage; uncheck it and watch it move back.</li>
+      <li>Try building your own template by hand under Workflow templates (add a few stages, any profession), or <strong>Export</strong> the built-in one and re-<strong>Import</strong> it as your own copy to confirm the round-trip is exact.</li>
+    </ol>
+    <h3>Project Parts (Steps 343&ndash;346) <span class="badge done">Built</span></h3>
+    <p>A project isn't always one workstream with one methodology. The real example that motivated this: a high-rise construction project where plumbing, framing, and electrical crews all work concurrently, each following its own real process. A <strong>Part</strong> is a child of a Project — its own title, its own status, and its own <em>optionally different</em> Workflow Template — with its own independent stage checklist and recommended-next-step banner. A part is opt-in extra structure, never a replacement for the project's own top-level workflow: a simple, single-workflow project never needs one, and a project with parts can still (or instead) have its own top-level template linked, completely independently of what its parts are doing.</p>
+    <p>A part's <code>repo_path</code> is optional and falls back to the parent project's own when unset — useful for a monorepo-style project where one part (say, the backend) lives in its own subdirectory. Deleting a project cascades to its parts and their stage-completion records; deleting a single part never touches its siblings or the parent project.</p>
+    <h3>Tutorial (parts)</h3>
+    <ol>
+      <li>Expand a project (or add a new one) and scroll to its <strong>Parts</strong> section.</li>
+      <li>Click <strong>+ Add part</strong> twice — e.g. "Framing crew" linked to one workflow template, "Electrical crew" linked to a different one.</li>
+      <li>Check off a stage on the framing crew's checklist and confirm its own recommended-next-step banner moves — and that the electrical crew's banner and progress count are completely unaffected.</li>
+      <li>Change a part's status independently of the project's own overall status, and independently of its sibling parts.</li>
+    </ol>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+</div>
+
+</main>
+
+<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/sidenav.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Business Stats Sharing — LifeModel Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+</style>
+</head>
+<body data-next-step-page="business-stats"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
+    <li><a href="/agent.html">Agent</a></li>
+    <li><a href="/form-filler.html">Fill a Form</a></li>
+    <li><a href="/email.html">Email</a></li>
+    <li><a href="/budget.html">Budget</a></li>
+    <li><a href="/employer.html">Employer</a></li>
+    <li><a href="/projects.html">Projects</a></li>
+    <li><a href="/business-stats.html" class="active">Business Stats</a></li>
+    <li><a href="/marketing.html">Marketing</a></li>
+    <li><a href="/business-model.html">Business Model</a></li>
+    <li><a href="/managed-sites.html">Managed Sites</a></li>
+    <li><a href="/infra.html">Server Infra</a></li>
+    <li><a href="/security.html">Security</a></li>
+    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
+    <li><a href="/jobs.html">Jobs</a></li>
+    <li><a href="/goals.html">Goals</a></li>
+    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
+        <li><a href="/maintenance.html">System maintenance</a></li>
+        <li><a href="/leftovers.html">Software leftovers</a></li>
+        <li><a href="/archive.html">Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="/upload.html">Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<h2>Phase 10: Employer Business Info &amp; Stats Sharing — Preview</h2>
+<h3>Documentation</h3>
+    <p>Lets a business owner record real per-period business stats (revenue, profit, growth rate, employee count) behind a Phase 9 profit-share proposal, and share only what they choose with specific employees. <strong>Sharing is per-field, not per-row:</strong> each recorded stat period has its own list of which fields are <code>shareable</code> — an owner might mark <code>profit</code> and <code>growth_rate</code> shareable while keeping itemized <code>revenue</code> and <code>employee_count</code> internal-only. Fields not marked shareable are never returned to a <strong>summary_only</strong> grant, no exceptions.</p>
+    <p><strong>Access is default-deny and explicit:</strong> an employee sees nothing until the owner creates an access grant naming them, with an access level of <strong>summary_only</strong> (shareable fields only) or <strong>detailed</strong> (everything). A grant is never created automatically just because someone opted into a profit-share proposal — it's always a separate owner action. Revoking a grant takes effect immediately: the very next read using that grant's ID is rejected, nothing is cached.</p>
+    <p><strong>Read the security model honestly:</strong> this app has no login system anywhere and dashboard.site stays bound to this machine only. A grant's ID is the closest thing to a credential an employee presents — it's revocable and every gated read is written to the <strong>access audit log</strong> below, but it is <em>not</em> cryptographic proof of who's actually asking. The real security boundary is still who has physical or network access to this computer, exactly like every other page in this vault.</p>
+    <p>The <strong>shared progress view</strong> combines the latest permitted stats with the linked Phase 9 proposal's live projection — profit over projection, pool amount, and estimated per-employee share — computed by the exact same math the Employer page itself uses, so the two views can never silently drift apart.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open the <a href="/business-stats.html">Business Stats</a> page and click <strong>+ Add business</strong> to record the business's legal name and industry.</li>
+      <li>On the <a href="/employer.html">Employer</a> page, edit the matching employer record and set its <code>business_id</code> to this business's ID, so a proposal can pull real stats.</li>
+      <li>Back on Business Stats, select the business and click <strong>+ Add stat period</strong> — enter the real revenue/profit/growth/headcount figures, and check only the fields you want a summary_only employee to ever see.</li>
+      <li>Click <strong>+ Grant access</strong>, name the employee, and pick <strong>Summary only</strong> or <strong>Detailed</strong>. Note the grant's ID shown in the list — you'll hand this and the business's ID (#shown above the grants list) to the employee directly.</li>
+      <li>Scroll to <strong>Shared progress view</strong> at the bottom of the page (or have the employee do this themselves) and enter the Business ID and Grant ID to see exactly what that employee sees.</li>
+      <li>Try revoking the grant, then submit the shared progress view again with the same IDs — confirm it's rejected immediately.</li>
+      <li>Check the <strong>Access audit log</strong> on the business detail view — every successful employee read is listed there with who and when.</li>
+    </ol>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+</div>
+
+</main>
+
+<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/sidenav.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Employer &amp; Profit-Share — LifeModel Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+</style>
+</head>
+<body data-next-step-page="employer"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
+    <li><a href="/agent.html">Agent</a></li>
+    <li><a href="/form-filler.html">Fill a Form</a></li>
+    <li><a href="/email.html">Email</a></li>
+    <li><a href="/budget.html">Budget</a></li>
+    <li><a href="/employer.html" class="active">Employer</a></li>
+    <li><a href="/projects.html">Projects</a></li>
+    <li><a href="/business-stats.html">Business Stats</a></li>
+    <li><a href="/marketing.html">Marketing</a></li>
+    <li><a href="/business-model.html">Business Model</a></li>
+    <li><a href="/managed-sites.html">Managed Sites</a></li>
+    <li><a href="/infra.html">Server Infra</a></li>
+    <li><a href="/security.html">Security</a></li>
+    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
+    <li><a href="/jobs.html">Jobs</a></li>
+    <li><a href="/goals.html">Goals</a></li>
+    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
+        <li><a href="/maintenance.html">System maintenance</a></li>
+        <li><a href="/leftovers.html">Software leftovers</a></li>
+        <li><a href="/archive.html">Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="/upload.html">Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<h2>Phase 9: Employer Info &amp; Profit-Share Coalition Agent — Preview</h2>
+<h3>Documentation</h3>
+    <p>Models an employer and turns "10% of profit earned above last year's projected growth, split evenly across participating employees" into real, computable numbers instead of a verbal pitch. A proposal stores its baseline profit, projected growth rate, and requested pool percentage; the projected profit is computed from those the moment you save it, and the live projection — profit over projection, pool amount, per-employee share — recalculates on every page load from the current opted-in headcount and actual profit (once known), never a stale stored figure.</p>
+    <p><strong>Consent is explicit, never assumed:</strong> a named colleague only counts toward the per-employee split once their status is set to <strong>opted_in</strong> — inviting someone or their silence never counts them in. Every consent-status change is logged with a timestamp for later reference.</p>
+    <p><strong>Every number is a proposal, not an entitlement</strong>, until the employer has actually agreed in writing: moving a proposal's status to <strong>Active</strong> is blocked until you've attached a signed-agreement reference — a verbal "yes" is never treated as binding. <strong>Draft pitch</strong> renders the full proposal document (baseline, terms, opted-in participants, and current numbers) for you to review — it is never sent to your employer automatically.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open the <a href="/employer.html">Employer</a> page and pick a profile.</li>
+      <li>Click <strong>+ Add employer</strong> and fill in the company/role basics.</li>
+      <li>Select that employer, then click <strong>+ Add proposal</strong> — enter the baseline profit, projected growth rate, and requested pool percentage for the year.</li>
+      <li>Select the proposal. Add a few participants by name, then set each one's consent to <strong>opted_in</strong> as they actually agree — watch the per-employee share in the projection update as the opted-in count changes.</li>
+      <li>Click <strong>Draft pitch</strong> to see the full proposal document rendered — copy it out and deliver it yourself; nothing here sends anything.</li>
+      <li>Log each round of back-and-forth under <strong>Negotiation log</strong> as it happens.</li>
+      <li>Once the employer has agreed in writing, enter a reference to that agreement and move the status to <strong>Active</strong> — notice it's rejected until the reference is filled in.</li>
+      <li>Once year-end actual profit is known, set it on the proposal, then click <strong>Record payout from current numbers</strong> and mark it <strong>paid</strong> once distributed.</li>
+    </ol>
+    <h3>Work Assignments &amp; Work Email Tracking (Steps 332&ndash;336) <span class="badge done">Built</span></h3>
+    <p>A second, deliberately separate tracker on the same Employer page: real day-to-day work projects <em>assigned to you</em> by this employer — a title, real details, and an expected finish date you can revise as the deadline actually moves. <strong>This is not the same thing as Phase 11's "Work assignments"</strong> (Steps 32&ndash;35, described above): that feature is marketing-plan work an employer hands out to its own opted-in profit-share coalition participants, a B2B coalition-execution table. This one is personal — what the user themselves has been assigned — and lives in a completely separate database table under a different name (<code>EmployerProjectAssignments</code>, not <code>WorkAssignments</code>) precisely so the two are never confused in code or in the UI.</p>
+    <p>Once you link one of your already-connected <a href="/email.html">email accounts</a> to this employer, every real inbox sync automatically fuzzy-matches new messages against this employer's own open assignments (by title/details, entirely local — no remote model call, no new data-sharing permission needed) and links a confident match. An assignment with unread matched mail shows a real, live-computed "N new emails" badge — <strong>this is a live status shown when the page loads, never an OS-level push notification, a sound, or an email-of-its-own</strong>; this app has no push-delivery system anywhere. Opening the matched-email list doesn't clear the badge — only the explicit <strong>Mark seen</strong> action on each email does, so the count stays trustworthy.</p>
+    <h3>Tutorial (work assignments)</h3>
+    <ol>
+      <li>On the <a href="/employer.html">Employer</a> page, select an employer and click <strong>+ Add assignment</strong> — enter a real title, details, and an expected finish date.</li>
+      <li>Under <strong>Work email account</strong>, pick one of your connected accounts from the dropdown and click <strong>Save</strong> — if you don't have one yet, add it on the <a href="/email.html">Email</a> page first.</li>
+      <li>Sync that account's inbox (from the Email page, or via its own sync action) — any new message whose subject/body clearly matches an open assignment's title/details gets linked automatically.</li>
+      <li>Back on the Employer page, look for the "N new emails" badge on the matching assignment; click <strong>Show matched emails</strong> to read them inline, then <strong>Mark seen</strong> on each — watch the badge count go to zero only once you've actually done that.</li>
+      <li>Move an assignment's status to <strong>Completed</strong> once it's done — a completed/cancelled assignment stops absorbing new email matches, so old finished work doesn't keep collecting unrelated mail.</li>
+    </ol>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+</div>
+
+</main>
+
+<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/sidenav.js"></script>
+</body>
+</html>

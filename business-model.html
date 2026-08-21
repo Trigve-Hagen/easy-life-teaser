@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Business Model — LifeModel Dashboard</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+</style>
+</head>
+<body data-next-step-page="business-model"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
+    <li><a href="/agent.html">Agent</a></li>
+    <li><a href="/form-filler.html">Fill a Form</a></li>
+    <li><a href="/email.html">Email</a></li>
+    <li><a href="/budget.html">Budget</a></li>
+    <li><a href="/employer.html">Employer</a></li>
+    <li><a href="/projects.html">Projects</a></li>
+    <li><a href="/business-stats.html">Business Stats</a></li>
+    <li><a href="/marketing.html">Marketing</a></li>
+    <li><a href="/business-model.html" class="active">Business Model</a></li>
+    <li><a href="/managed-sites.html">Managed Sites</a></li>
+    <li><a href="/infra.html">Server Infra</a></li>
+    <li><a href="/security.html">Security</a></li>
+    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
+    <li><a href="/jobs.html">Jobs</a></li>
+    <li><a href="/goals.html">Goals</a></li>
+    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
+        <li><a href="/maintenance.html">System maintenance</a></li>
+        <li><a href="/leftovers.html">Software leftovers</a></li>
+        <li><a href="/archive.html">Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="/upload.html">Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<h2>Phase 15: Business Model — Financials, Marketing &amp; Document Generation — Preview</h2>
+<h3>Documentation</h3>
+    <p><strong>Competitor tracking:</strong> you add each competitor you actually want tracked — <code>competitor_research.py</code> never expands that list on its own, it only researches names already on it. Click <strong>Research</strong> to run a real public web search (reusing the same DuckDuckGo-HTML search Phase 8's lender research already uses — no login-gated content, no bypassing a site's terms) and log new <code>CompetitorObservations</code>, each carrying its source link. You can also log an observation by hand any time.</p>
+    <p><strong>Financial statements:</strong> every entry in the <code>BusinessLedgerEntries</code> log is one real transaction or balance movement — revenue, COGS, opex, an asset/liability/equity balance, or a cash-flow line. <code>financial_statements.py</code> is pure math with no database access of its own (same split as Phase 8's <code>finance_utils.py</code>), unit-tested against hand-computed examples: an <strong>income statement</strong> and <strong>cash flow statement</strong> filter to a period (a month or a whole year), while the <strong>balance sheet</strong> sums everything up to an as-of date, since assets/liabilities/equity are point-in-time balances, not period flows. A balance sheet that doesn't actually balance reports <code>balanced: false</code> loudly rather than hiding the problem.</p>
+    <p><strong>Invoices &amp; proposals:</strong> add a client, then an invoice with line items — subtotal and total are computed and stored the moment you save it. <strong>Render PDF</strong> produces a real downloadable document (reusing the same Playwright HTML-to-PDF rendering Phase 4's resume builder already established) — nothing is ever emailed automatically, it's a file for you to review and send yourself. Marking an invoice <strong>paid</strong> doesn't touch the ledger by itself; <strong>Record as revenue</strong> is a separate, explicit click that adds the matching <code>BusinessLedgerEntries</code> row, so nothing ever gets double-booked silently. Proposals work the same way, minus the ledger link.</p>
+    <p><strong>The rollup agent:</strong> the summary at the top of the page ties the current period's financials, open invoices/proposals, active marketing-plan elements (Phase 11), and recent competitor observations into one view. Ask it a plain-language question — "are we profitable this quarter?", "what's our largest open invoice?", "how does our pricing compare to &lt;competitor&gt;?" — and it answers by querying that same real data and citing the figures it used, same "cite the numbers, don't guess" rule as Phase 8's budget Q&amp;A and Phase 11's marketing budget suggestions. A question it doesn't have a rule for says so honestly instead of guessing at intent.</p>
+    <p><strong>Financial app sync (Steps 214/216):</strong> connect QuickBooks Online, Xero, Wave, FreshBooks, or Plaid on the <strong>Financial app sync</strong> panel — the OAuth token goes straight into the OS keyring via <code>credential_store.py</code> (the same generic pattern Phase 3's email OAuth established), never into <code>personal_vault.db</code>. <strong>Preview sync</strong> is read-only: it fetches from the provider and shows real fetched/new/duplicate counts and totals without writing anything. <strong>Confirm sync</strong> never trusts that preview — it independently re-fetches fresh from the provider and re-computes before writing, so a stale or tampered preview can never force a bad import. Duplicates are caught by each provider's own record id (<code>external_provider</code> + <code>external_ref</code>, a unique constraint on the ledger and invoices tables), not guesswork. Every connector fails closed: no real account connected means an honest empty result, never a fabricated fetch.</p>
+    <p><strong>Selective data groups &amp; JSON import/export (Steps 215/217):</strong> financial data is split into five groups — revenue, expenses, assets/liabilities, invoices/clients, competitors — mirroring the same curated-category shape Phase 10's data-access grants already use. Pick any combination on the <strong>Import/export</strong> panel to export just those groups as JSON, or paste JSON back in to import. Hand-authored or re-imported rows have no provider record id, so duplicate detection there hashes each row's real content (date, category, account, amount) instead — re-importing the exact same export always reports zero new records.</p>
+    <p><strong>Industry-tailored marketing plans &amp; campaign actions (Steps 224-227):</strong> generating a plan with no channels typed in tailors the channel list to the company's <code>industry</code> field (consulting/agency, retail/e-commerce, restaurant/local each get a different real channel set — a small hand-curated lookup, never an LLM improvising strategy) and proposes a linked <strong>campaign action</strong> for channels that map to one: email nurture → an email campaign, local SEO/blog channels → a blog post, paid social → an ad campaign. Every campaign action defaults to <code>suggest_only</code> — the "Actions" panel on each plan element (Marketing page) requires an explicit click to draft or send/publish/post, same as every other consequential action in this app. <strong>Enable auto-run</strong> is a separate, explicit opt-in per action, and <strong>Disable</strong> is an instant kill switch. Email sends only reach non-unsubscribed leads and always include an unsubscribe line (Phase 16 Step 57's CAN-SPAM rule applies here too); blog publishing and ad posting are real HTTP calls that report an honest failure — post stays a draft — when no working site/platform credential is connected, never a fabricated success.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open the <a href="/business-model.html">Business Model</a> page, pick a profile, and pick (or create on the <a href="/marketing.html">Marketing</a> page) a company.</li>
+      <li>Under <strong>Competitors</strong>, add one you actually want to track, then click <strong>Research</strong> — review what it found under <strong>Observations</strong>, each with its source link.</li>
+      <li>Under <strong>Financials</strong>, add a few ledger entries (a revenue row, an opex row, an asset/equity pair for an opening balance) and watch the income statement, balance sheet, and cash flow figures update — try a period like the current month.</li>
+      <li>Add a <strong>Client</strong>, then an <strong>Invoice</strong> with a couple of line items — check the computed subtotal/total. Click <strong>Render PDF</strong>, then mark it <strong>paid</strong> and click <strong>Record as revenue</strong> — watch the ledger and the rollup's net income change.</li>
+      <li>Add a <strong>Proposal</strong> and render it too.</li>
+      <li>Scroll to the top and ask the rollup agent a question — "are we profitable this quarter?" or "what's our largest open invoice?" — and check that its answer matches the real numbers on the page.</li>
+      <li>Under <strong>Financial app sync</strong>, add a connection for one of the five providers, click <strong>Preview sync</strong>, then check a couple of <strong>data groups</strong> and click <strong>Export</strong> — paste the resulting JSON straight back into <strong>Import</strong> and confirm it reports zero new records.</li>
+      <li>Go to the <a href="/marketing.html">Marketing</a> page, set an <strong>industry</strong> on the company, and generate a plan with no channels typed in — check the channel titles match the industry, open <strong>Actions</strong> on a channel that got a linked action, and draft its email template / blog post / ad.</li>
+    </ol>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+</div>
+
+</main>
+
+<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+
+<script src="/js/theme.js"></script>
+<script src="/js/sidenav.js"></script>
+</body>
+</html>
