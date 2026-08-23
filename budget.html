@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Budget — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,45 +34,48 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html">Email</a></li>
-    <li><a href="/budget.html" class="active">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html">Managed Sites</a></li>
-    <li><a href="/infra.html">Server Infra</a></li>
-    <li><a href="/security.html">Security</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html">Goals</a></li>
-    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html" class="active">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html">Move to external drive</a></li>
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 8: Budget &amp; Finance Tracking — Preview</h2>
-<h3>Documentation</h3>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 8: Budget &amp; Finance Tracking <span class="badge done">Built</span></h2>
+    <h3>Documentation</h3>
     <p>Tracks checking/savings accounts, credit cards, and loans (all monetary values stored as exact decimals, never floating point), bills with recurrence, and income sources. <code>finance_utils.py</code> runs real amortization math — month-by-month interest/principal/balance — to project when a card or loan pays off and how much interest that costs, and lets you compare "what if I paid $X more/month" against the current plan. The budget agent answers a handful of specific question patterns (afford-a-purchase, which-card-first, this-month-summary, upcoming-bills) by querying that same real data — every answer states the numbers it used, and an unrecognized question says so instead of guessing.</p>
     <p class="notice">Avalanche (highest-APR-first) vs. snowball (smallest-balance-first) payoff ordering is a suggestion the agent computes, never something it acts on — you decide which debt to attack first.</p>
     <p>Every loan also gets a <strong>strategy toolkit</strong>: upload the actual signed documents (PDF text is extracted automatically — a scanned/image-only PDF won't extract text yet, that's a known gap, not silently faked), research the lender's own practices and complaint history plus refinance/balance-transfer/assistance-program options via real, cited web search, and run an analysis that combines your loan's real numbers, the uploaded documents (it specifically checks for prepayment-penalty language before suggesting extra payments), and that research into concrete suggestions ranked against a payoff goal you set (minimize interest, minimize payment, payoff ASAP, or eliminate via negotiation/forgiveness). Every suggestion cites what it used — either the exact math or a source URL — and nothing more than a status label ("interested"/"pursuing"/"dismissed") ever changes on its own; contacting a lender or accepting an offer is entirely up to you. <strong>None of this is legal or financial advice.</strong></p>
     <h3>Tutorial</h3>
     <ol>
-      <li>Open the <a href="/budget.html">Budget</a> page and pick a profile.</li>
+      <li>Open the <a href="budget.html">Budget</a> page and pick a profile.</li>
       <li>Add an account — for a credit card or loan, the form expands to ask for APR/limit/payment (credit card) or principal/rate/payment (loan).</li>
       <li>Click <strong>Payoff projection</strong> on any credit card or loan to see months-to-payoff and total interest at the current payment, plus a "what if I pay this much/month" comparison.</li>
       <li>On a loan, click <strong>Loan strategy tools</strong>: set a payoff goal, upload any signed loan documents, click <strong>Research lender</strong> (enter the lender's name) and <strong>Research funding sources</strong>, then <strong>Analyze strategies</strong> to draft cited suggestions. Mark any you want to act on as "Interested" or "Pursuing" — that's a label for you, not an action taken on your behalf.</li>
@@ -82,15 +85,17 @@
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>

@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Security — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body data-next-step-page="security"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body data-next-step-page="security"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,64 +34,77 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html">Email</a></li>
-    <li><a href="/budget.html">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html">Managed Sites</a></li>
-    <li><a href="/infra.html">Server Infra</a></li>
-    <li><a href="/security.html" class="active">Security</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html">Goals</a></li>
-    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html" class="active">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html">Move to external drive</a></li>
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 30: Security Posture Guidance &amp; Hardening Agent — Preview</h2>
-<p><strong>What this is:</strong> real, hand-authored network security guidance on <a href="/security.html">Security</a> (home/private-device/work/public-network checklists, plus a dedicated warning for client/payment work over an untrusted network), and a real agent underneath it — an opt-in registry of routers/servers/other computers to watch (<code>SecurityAuditTargets</code>), read-only posture checks against them, and fix proposals that only ever change something after a separate, explicit confirm click — the same propose-then-confirm gate Phase 25's <code>MaintenanceRuns</code> already use, reused directly rather than a new mechanism.</p>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 30: Security Posture Guidance &amp; Hardening Agent <span class="badge done">Built</span></h2>
+    <p><strong>What this is:</strong> real, hand-authored network security guidance on <a href="security.html">Security</a> (home/private-device/work/public-network checklists, plus a dedicated warning for client/payment work over an untrusted network), and a real agent underneath it — an opt-in registry of routers/servers/other computers to watch (<code>SecurityAuditTargets</code>), read-only posture checks against them, and fix proposals that only ever change something after a separate, explicit confirm click — the same propose-then-confirm gate Phase 25's <code>MaintenanceRuns</code> already use, reused directly rather than a new mechanism.</p>
     <p><strong>Checks that actually run:</strong> for "this machine," a real firewall check (<code>ufw status</code>, honestly reported as unavailable where <code>ufw</code> isn't installed), real listening-port enumeration (<code>ss -tlnp</code>) diffed against a hand-curated expected baseline, a live check that the local backend is actually bound to <code>127.0.0.1</code> (not just a code-review assertion), and patch currency reused directly from Phase 6's own <code>UpdateHistory</code>. For a registered router/server with a stored SSH credential, the same connection code Phase 25 Step 169 already uses (never a second SSH client) runs a smaller, platform-appropriate check set. A check that can't run — no credential, tool missing, platform mismatch — is recorded honestly as an info-level finding saying so, never a guessed pass/fail.</p>
     <p><strong>Fix proposals:</strong> only one check type (an inactive local firewall) has a real, safe, automated remediation (<code>sudo ufw --force enable</code>) — everything else proposes "review this manually" with no command attached, since inventing a generic fix for a finding this system doesn't have a real, verified remediation for would be exactly the kind of fabrication this project avoids elsewhere. The one opt-in exception — auto-blocking a source IP after repeated failed local logins — is built and off by default, but <strong>honestly unexercised</strong>: dashboard.site has no login system yet, so there's nothing today that actually calls it.</p>
-    <p><strong>Managed client sites (Step 241):</strong> both the WordPress plugin and Drupal module (Phase 25 Step 172) gained a real <code>security-status</code> verb — Drupal can precisely detect a security-specific update via core's own <code>UPDATE_NOT_SECURE</code> status; WordPress approximates it as "a core update is available, may include security fixes" since WordPress doesn't cleanly expose security-only status. Both also check for a default <code>admin</code> account and make a real outbound request to confirm whether sensitive paths (<code>wp-config.php</code>/<code>settings.php</code>, <code>.git/HEAD</code>, <code>.env</code>) are actually publicly reachable. Results land as ordinary <code>SiteUpdateStatus</code> rows tagged <code>component_type=security</code>, visible on <a href="/managed-sites.html">Managed Sites</a>.</p>
+    <p><strong>Managed client sites (Step 241):</strong> both the WordPress plugin and Drupal module (Phase 25 Step 172) gained a real <code>security-status</code> verb — Drupal can precisely detect a security-specific update via core's own <code>UPDATE_NOT_SECURE</code> status; WordPress approximates it as "a core update is available, may include security fixes" since WordPress doesn't cleanly expose security-only status. Both also check for a default <code>admin</code> account and make a real outbound request to confirm whether sensitive paths (<code>wp-config.php</code>/<code>settings.php</code>, <code>.git/HEAD</code>, <code>.env</code>) are actually publicly reachable. Results land as ordinary <code>SiteUpdateStatus</code> rows tagged <code>component_type=security</code>, visible on <a href="managed-sites.html">Managed Sites</a>.</p>
     <p class="notice"><strong>Honest gaps:</strong> neither on-server agent's <code>security-status</code> verb has been exercised against a real WordPress or Drupal install (same caveat Phase 25's own agent already carries). Router-specific checks (OpenWrt/pfSense/Ubiquiti CLI commands) are a generic, best-effort fallback only, unverified against a real device. A security finding with no corresponding real remediation (e.g. "default admin account exists") can be proposed through the same Maintenance Runs mechanism but will honestly fail to confirm — there's no "rename this account" action to run, which is correct behavior, not a bug. See <code>CLAUDE_PLAN.md</code>'s Phase 30 for the full annotated build.</p>
     <h3>Tutorial</h3>
     <ol>
-      <li>Open <a href="/security.html">Security</a> from the side menu and read the guidance section for whatever network you're actually on right now.</li>
+      <li>Open <a href="security.html">Security</a> from the side menu and read the guidance section for whatever network you're actually on right now.</li>
       <li>Under Audit targets, click <strong>+ Add target</strong> — check "This machine" for a zero-config local scan, or add a router/server with a label and host.</li>
       <li>For a remote target, click <strong>+ SSH credential</strong> to store how to reach it (never a raw password/key in the vault database — it goes through the same keyring pattern every other credential in this project uses).</li>
       <li>Click <strong>Scan now</strong>, then <strong>View findings</strong> to see the real results.</li>
       <li>On a finding, click <strong>Propose fix</strong>, review what it actually says it will do, then <strong>Confirm &amp; apply</strong> only when you mean it.</li>
-      <li>On <a href="/managed-sites.html">Managed Sites</a>, a site with the on-server agent installed can run a security check the same way it already runs an update check.</li>
+      <li>On <a href="managed-sites.html">Managed Sites</a>, a site with the on-server agent installed can run a security check the same way it already runs an update check.</li>
     </ol>
+    <h3>Next steps</h3>
+    <ul>
+      <li>Smoke-test the WordPress/Drupal <code>security-status</code> verb against a real staging install.</li>
+      <li>Add a real login system to dashboard.site so the auto-block-IP exception has something to actually protect.</li>
+      <li>Add device-specific checks for real router platforms (OpenWrt/pfSense/Ubiquiti) once one is available to test against.</li>
+    </ul>
+    <p class="notice">See <a href="index.html#phase-30">Phase 30 on the Dashboard</a> for live step status, or <code>CLAUDE_PLAN.md</code> in the repo for the full plan.</p>
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>

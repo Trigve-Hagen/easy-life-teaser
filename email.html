@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Email — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body data-next-step-page="email"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body data-next-step-page="email"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,45 +34,48 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html" class="active">Email</a></li>
-    <li><a href="/budget.html">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html">Managed Sites</a></li>
-    <li><a href="/infra.html">Server Infra</a></li>
-    <li><a href="/security.html">Security</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html">Goals</a></li>
-    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html" class="active">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html">Move to external drive</a></li>
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 3: Email Account &amp; Category Management — Preview</h2>
-<h3>Documentation</h3>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 3: Email Account &amp; Category Management <span class="badge done">Built</span></h2>
+    <h3>Documentation</h3>
     <p>Model email accounts and keyword-driven categories, then classify a message against them. Each category has a comma-separated keyword list and an action (<code>auto_reply</code>, <code>flag</code>, <code>archive</code>, <code>forward</code>); classification picks whichever category has the most keyword hits in the subject+body, or leaves the message unclassified if nothing matches — it never guesses. Every matched action (not just <code>auto_reply</code>) is staged and waits for an explicit approval before it's treated as done.</p>
     <p>An account can optionally be <strong>connected</strong> to a real Gmail or Outlook mailbox via OAuth (PKCE, a local-loopback browser sign-in — no password is ever typed into LifeModel, and the resulting tokens live in your OS's secure credential store, never in the vault database). Once connected: <strong>Sync now</strong> pulls real messages into a local inbox cache and classifies each one automatically; approving a real message's staged classification actually replies (<code>auto_reply</code>) or files it into the folder/label set on its category (<code>flag</code>/<code>archive</code>/<code>forward</code>) — deletion always trashes, never permanently purges. A staged classification can also be turned into a <strong>calendar event proposal</strong> (date/time pulled from the message via a local AI model if one's configured, or a fallback pattern match otherwise); proposals stay as local drafts until you explicitly confirm one, which is the only action that pushes it to your real calendar.</p>
     <p class="notice"><strong>Setup note:</strong> connecting a real account requires your own registered OAuth client — LifeModel can't create one on your behalf. Register a public/installed OAuth client (Google Cloud Console for Gmail, an Azure AD app registration for Outlook) and set <code>GOOGLE_OAUTH_CLIENT_ID</code> / <code>MS_OAUTH_CLIENT_ID</code> (and optionally <code>MS_OAUTH_TENANT</code>) as environment variables before starting the backend. Everything on this page still works against manually-typed test messages with no setup at all.</p>
     <h3>Tutorial</h3>
     <ol>
-      <li>Open the <a href="/email.html">Email</a> page, pick a profile, and click <strong>+ New account</strong> — enter an email address and save.</li>
+      <li>Open the <a href="email.html">Email</a> page, pick a profile, and click <strong>+ New account</strong> — enter an email address and save.</li>
       <li>Add one or more <strong>Categories</strong>: a name, comma-separated keywords, an action, a reply template (for <code>auto_reply</code>) or a "file to" folder/label (for <code>flag</code>/<code>archive</code>/<code>forward</code>) using <code>{{sender_name}}</code>/<code>{{subject}}</code> placeholders where relevant.</li>
       <li><em>Optional:</em> under <strong>Connection</strong>, click <strong>Connect Gmail</strong> or <strong>Connect Outlook</strong> — a browser tab opens for you to sign in and grant access; the page updates automatically once it completes. Click <strong>Sync now</strong> to pull real messages into the <strong>Inbox</strong> list below.</li>
       <li>Under <strong>Test classification</strong>, paste in a from/subject/body and click <strong>Classify</strong> to see which category matches without touching real mail.</li>
@@ -94,15 +97,18 @@
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>

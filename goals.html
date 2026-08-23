@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Goals — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body data-next-step-page="goals"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body data-next-step-page="goals"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,40 +34,43 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html">Email</a></li>
-    <li><a href="/budget.html">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html">Managed Sites</a></li>
-    <li><a href="/infra.html">Server Infra</a></li>
-    <li><a href="/security.html">Security</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html" class="active">Goals</a></li>
-    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html" class="active">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html">Move to external drive</a></li>
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 17: Marketable Skills, Goals &amp; Reward Agent — Preview</h2>
-<h3>Documentation</h3>
-    <p>The point of this phase is happiness, not just productivity — everything on the <a href="/goals.html">Goals</a> page gets checked against what you actually said would make you happy, and hitting a goal earns a real, self-defined reward, not just a status flip.</p>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 17: Marketable Skills, Goals &amp; Reward Agent <span class="badge done">Built</span></h2>
+    <h3>Documentation</h3>
+    <p>The point of this phase is happiness, not just productivity — everything on the <a href="goals.html">Goals</a> page gets checked against what you actually said would make you happy, and hitting a goal earns a real, self-defined reward, not just a status flip.</p>
     <p><strong>Life values:</strong> the <strong>guided intake</strong> asks three fixed prompts (what you enjoy even when it's hard, what you'd do if money didn't matter, what drains you) and stores each answer as its own structured, categorized row — never one freeform blob — so the opportunity agent below can actually query it. You can also add values by hand at any time, each with a category (interest/strength/value/dealbreaker/energizer/drainer) and an importance rating.</p>
     <p><strong>Skills &amp; skill gaps:</strong> track what you already have, at what proficiency, and whether it's marketable and enjoyable. A skill gap records something worth learning — often because it kept coming up in researched opportunities — with a status you move from <code>identified</code> through <code>learning</code> to <code>acquired</code>.</p>
     <p><strong>Goals &amp; milestones:</strong> a goal is a real plan, not a wish — break it into milestones and the progress bar tracks real completion. A goal can only move to <code>completed</code> once every milestone is <code>done</code>; trying to complete one early is rejected with an explicit "not every milestone is done yet" error unless you deliberately override it, and that override is logged.</p>
@@ -75,25 +78,35 @@
     <p><strong>Rewards:</strong> you define your own rewards up front — same self-defined-values spirit as life values. Link one to a goal and it flips from <code>planned</code> to <code>earned</code> automatically the instant that goal completes, surfaced right at the top of the page so it's the first thing you see. <strong>Claiming</strong> a reward is always a separate, explicit click — the system never "spends" it on your behalf. If a reward has an estimated cost and Phase 8's budget is set up, <strong>Check against budget</strong> gives an honest advisory note against this month's real projected surplus — never a block.</p>
     <h3>Tutorial</h3>
     <ol>
-      <li>Open the <a href="/goals.html">Goals</a> page and pick a profile.</li>
+      <li>Open the <a href="goals.html">Goals</a> page and pick a profile.</li>
       <li>Under <strong>Life values</strong>, click <strong>Guided intake</strong> and answer at least one prompt honestly.</li>
       <li>Under <strong>Marketable skills</strong>, add a skill you're actually good at — mark its proficiency and whether it's marketable.</li>
       <li>Under <strong>Goals</strong>, add a goal and a couple of milestones, then try marking it <code>completed</code> before the milestones are done — check that it's rejected until you finish them (or explicitly override).</li>
       <li>Add a <strong>Reward</strong> linked to that goal before you finish it, then mark the remaining milestones done and complete the goal — watch the reward flip to earned at the top of the page, then claim it.</li>
       <li>Under <strong>Opportunity ideas</strong>, click <strong>Research more opportunities</strong> and check that every idea returned has a real source link and an honest note on which value/skill it matched.</li>
     </ol>
+    <h3>Next steps</h3>
+    <ul>
+      <li>Run the guided intake for real and see whether the opportunity agent's matches actually feel relevant to what you said.</li>
+      <li>Try the milestone-completion override and confirm it's logged rather than silent.</li>
+      <li>Link a reward to a goal you're already close to finishing and watch the auto-earn flip happen live.</li>
+      <li>Once Phase 8's budget is populated with real bills/income, add an estimated cost to a reward and check its budget advisory against real numbers.</li>
+    </ul>
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>

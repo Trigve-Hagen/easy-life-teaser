@@ -9,6 +9,12 @@
   --progress: #e7b93f;
   --blocked: #e0553f;
   --not-started: #4a4f5a;
+  /* Step 374: fallback before sidenav.js measures the header's real
+     height (it wraps to a second line at narrow widths, so this is never
+     assumed correct on its own -- see syncHeaderHeight). */
+  --header-height: 65px;
+  --sidenav-collapsed: 60px;
+  --sidenav-expanded: 240px;
 }
 
 /* Phase 7 Step 161: light theme -- additive token values only, same names
@@ -112,40 +118,120 @@ header.site-header h1 {
 
 #theme-toggle:hover { color: var(--accent); }
 
-/* Slide-out side navigation (adapted from gwm_site's #right-side-menu pattern) */
+/* Dev-only tier switch, next to the theme toggle */
+#tier-toggle {
+  margin: 0 0.4rem;
+  padding: 0.3rem 0.6rem;
+  background: none;
+  border: 1px solid var(--border, #2a3550);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--text-muted);
+}
+
+#tier-toggle:hover { color: var(--accent); border-color: var(--accent); }
+#tier-toggle:disabled { opacity: 0.6; cursor: wait; }
+
+/* Step 374: icon-rail / extended side navigation -- always occupies real
+   layout space below the header (never covers it, never a full-screen
+   modal drawer over <main>), collapsed to icons only by default and
+   toggled to icons+labels by the header hamburger. Replaces the previous
+   slide-out drawer (0 -> 280px, position:fixed from the very top of the
+   viewport, blur-and-focus-trap on <main> while open). */
 .sidenav {
-  height: 100%;
-  width: 0;
+  height: calc(100vh - var(--header-height));
+  width: var(--sidenav-collapsed);
   position: fixed;
   z-index: 100;
-  top: 0;
+  top: var(--header-height);
   right: 0;
-  background: var(--panel);
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  /* Step 377: the rail is position:fixed, so it stays put on screen while
+     the header (normal in-flow, not fixed) scrolls away with the rest of
+     the page -- header.site-header's own border-bottom scrolls off with
+     it, leaving the rail's top edge looking naked mid-scroll without its
+     own matching border-top. */
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.5rem;
+  padding-bottom: 0.4rem; /* Step 395: clearance under the last footer row */
+  transition: width 0.2s ease;
+  /* Step 380: hidden by default -- sidenav.js is the LAST of 16 scripts
+     this page loads (each one blocks HTML parsing until it downloads and
+     runs), and the raw <a href="/profile.html">Profile</a> markup has no
+     hiding mechanism of its own until that script wraps it in the
+     .sidenav-icon/.sidenav-label spans .sidenav-label's own CSS rule
+     depends on. Confirmed directly: at the earliest paint commit point,
+     the link's real textContent is still the bare "Profile" and the rail
+     is fully visible -- a real, paintable frame the browser could (and,
+     per the direct report, does) show before JS fixes it up, on every
+     single page load this app has, not just after a nav click. JS flips
+     this back to visible once icons are wrapped and tier-filtering has
+     finished, see sidenav.js's revealMenu(). */
+  visibility: hidden;
+}
+
+.sidenav.expanded {
+  width: min(var(--sidenav-expanded), 85vw);
+}
+
+/* Step 377: the link list is the one scrollable region -- the divider,
+   Premium Features link, and theme toggle below it stay pinned at the
+   rail's own bottom regardless of how long the list gets (min-height:0 is
+   the standard fix for a flex child's scroll area collapsing to its
+   content size instead of actually shrinking inside a column flex
+   parent). */
+.sidenav > ul {
+  flex: 1 1 auto;
+  min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
-  padding-top: 1rem;
-  transition: width 0.25s ease;
-  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.4);
-}
-
-.sidenav.open {
-  width: min(280px, 85vw);
-  border-left: 1px solid var(--border);
-}
-
-.sidenav ul {
   list-style: none;
   margin: 0;
-  padding: 0 0 2rem;
+  padding: 0 0 1rem;
+}
+
+/* Step 395: every rail-footer row is flex:none.
+   The footer grew from one row (theme toggle) to as many as four (divider,
+   Premium Features, Plan Tracker, Release Planner, theme toggle), and these
+   are flex children of a fixed-height column. Without this they default to
+   flex-shrink:1 and compete with the scrollable link list for the squeeze,
+   which is exactly backwards: the list is the part that should give, since
+   it already scrolls. min-height:auto happens to protect them today, but
+   only until any of them gets an explicit height or min-height -- pinning
+   flex:none makes the intent real instead of incidental.
+
+   The matching bottom padding on .sidenav keeps the last row off the
+   viewport's bottom edge; measured before this, #theme-toggle's bottom sat
+   exactly on it at every height tested. */
+.sidenav > .premium-nav-link,
+.sidenav > #theme-toggle {
+  flex: none;
+}
+
+.sidenav-divider {
+  flex: none;
+  height: 1px;
+  margin: 0.4rem 0;
+  background: var(--border);
 }
 
 .sidenav a,
-.sidenav button.submenu-toggle {
+.sidenav button.submenu-toggle,
+.sidenav #theme-toggle {
   font: inherit;
-  padding: 0.65rem 1.25rem;
+  padding: 0.65rem 1rem;
   font-size: 0.9rem;
   color: var(--text);
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
   width: 100%;
   text-align: left;
   background: none;
@@ -153,12 +239,12 @@ header.site-header h1 {
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: none;
 }
 
 .sidenav a:hover,
-.sidenav button.submenu-toggle:hover {
+.sidenav button.submenu-toggle:hover,
+.sidenav #theme-toggle:hover {
   color: var(--accent);
   background: rgba(91, 141, 239, 0.08);
 }
@@ -168,21 +254,108 @@ header.site-header h1 {
   font-weight: 600;
 }
 
-.sidenav #menu-close-burger {
-  display: block;
-  text-align: right;
-  padding: 0 1.25rem 1rem;
-  font-size: 1.8rem;
+.sidenav-icon {
+  flex: none;
+  width: 1.5rem;
+  text-align: center;
+  font-size: 1.1rem;
   line-height: 1;
-  color: var(--muted);
-  text-decoration: none;
 }
 
-.sidenav #menu-close-burger:hover { color: var(--text); }
+.sidenav-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Collapsed (icon-only) rail: labels/captions hidden, icons centered in
+   the narrow column, submenus never shown (nothing to indent into). */
+.sidenav:not(.expanded) .sidenav-label { display: none; }
+
+.sidenav:not(.expanded) a,
+.sidenav:not(.expanded) button.submenu-toggle,
+.sidenav:not(.expanded) #theme-toggle {
+  justify-content: center;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidenav:not(.expanded) .submenu-toggle::after { display: none; }
+.sidenav:not(.expanded) .submenu { display: none !important; }
+
+/* The old drawer's own "×" dismiss control -- the hamburger is the one
+   toggle now, per direct request; hidden rather than removed from the
+   duplicated per-page markup (see sidenav.js's own comment on this). */
+.sidenav #menu-close-burger { display: none; }
+
+/* Step 376: hover/focus flyout for the collapsed (icon-only) rail --
+   position:fixed and appended to <body> (see sidenav.js), not absolute
+   inside .sidenav, since .sidenav's own overflow-x:hidden would clip
+   anything bleeding past the rail's left edge otherwise. */
+.sidenav-flyout {
+  position: fixed;
+  transform: translateY(-50%);
+  width: 220px;
+  max-width: calc(100vw - 2rem);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.6rem 0.75rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+.sidenav-flyout.visible {
+  opacity: 1;
+  visibility: visible;
+  /* Step 406: nothing inside a flyout was ever clickable before -- the
+     base class above stays pointer-events:none so a purely-informational
+     flyout (every one except Tests) still doesn't intercept clicks meant
+     for whatever's underneath. Re-enabled only while actually visible,
+     which is also the only time real content (Tests' section links) is
+     there to click. */
+  pointer-events: auto;
+}
+
+.sidenav-flyout-title {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+
+.sidenav-flyout-desc {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.sidenav-flyout-links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+  gap: 0.15rem;
+}
+
+.sidenav-flyout-links a {
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-decoration: none;
+  padding: 0.15rem 0;
+}
+
+.sidenav-flyout-links a:hover { color: var(--accent); }
 
 .sidenav .has-children > .submenu-toggle::after {
   content: "\25BE";
-  float: right;
+  margin-left: auto;
   transition: transform 0.2s ease;
 }
 
@@ -192,15 +365,27 @@ header.site-header h1 {
 
 .sidenav .submenu {
   max-height: 0;
+  padding-bottom: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
   background: rgba(0, 0, 0, 0.15);
+  /* Explicit rather than relying on inheriting .sidenav > ul's own
+     list-style:none -- that rule only ever targeted the top-level list;
+     a nested <ul> gets its own UA-default marker (circle/disc) regardless
+     of what an ancestor sets, since an explicit value on the element
+     itself always beats inheritance. Found live: the footer-row Tests
+     submenu (a .submenu sitting directly under #side-menu, not nested
+     inside the main link list the way Docs/Clean your computer are)
+     showed real bullet markers where the others happened not to. */
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
 }
 
 .sidenav .submenu.open { max-height: 950px; }
 
 .sidenav .submenu a {
-  padding-left: 2.25rem;
+  padding-left: 2.75rem;
   font-size: 0.8rem;
   color: var(--muted);
   white-space: normal;
@@ -208,16 +393,17 @@ header.site-header h1 {
 
 .sidenav .submenu a:hover { color: var(--accent); }
 
-main[aria-hidden="true"] {
-  filter: blur(1px);
-  pointer-events: none;
-}
-
 main {
   padding: 1.5rem;
+  padding-right: calc(1.5rem + var(--sidenav-collapsed));
   max-width: 1100px;
   margin: 0 auto;
   width: 100%;
+  transition: padding-right 0.2s ease;
+}
+
+body.sidenav-expanded main {
+  padding-right: calc(1.5rem + min(var(--sidenav-expanded), 85vw));
 }
 
 .phase-grid {
@@ -239,6 +425,125 @@ main {
   border-radius: 5px;
   padding: 1rem 1.25rem;
 }
+
+/* Step 372: "Your dashboard"'s widget grid -- three cards across, same
+   panel/border language as .phase-card above, not a second design system. */
+#widget-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+@media (max-width: 760px) {
+  #widget-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px) {
+  #widget-grid { grid-template-columns: 1fr; }
+}
+
+.widget-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.widget-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+.widget-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.widget-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  flex: 1;
+  color: inherit;
+  text-decoration: none;
+}
+
+.widget-card-title:hover h3 { color: var(--accent); }
+
+.widget-card-icon {
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  line-height: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+}
+
+.widget-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Step 373: hidden until JS confirms this card's own content actually
+   overflows the shared clipped height -- a card with nothing extra to
+   reveal gets no toggle at all. */
+.widget-card-toggle {
+  flex: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  background: none;
+  border: none;
+  border-radius: 5px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: color 0.15s ease, transform 0.2s ease;
+}
+
+.widget-card-toggle.is-visible { display: flex; }
+.widget-card-toggle:hover { color: var(--accent); }
+.widget-card[data-expanded="true"] .widget-card-toggle { transform: rotate(180deg); }
+
+/* The shared clipped height every card body respects by default -- what
+   actually keeps every "Your dashboard" card the same height regardless
+   of how much a given page has to report. Expanding one card grows its
+   own row to match (grid rows stretch every item to the row's tallest,
+   same as .phase-grid elsewhere on this page) -- the other cards in that
+   row just gain blank space below their own still-clipped content,
+   never a broken or uneven-looking row. */
+.widget-card-body {
+  height: 5.5rem;
+  overflow: hidden;
+  font-size: 0.85rem;
+}
+
+.widget-card[data-expanded="true"] .widget-card-body {
+  height: auto;
+  overflow: visible;
+}
+
+.widget-card-body .item-summary { margin: 0; font-weight: 600; }
+.widget-card-body .notice { margin: 0.3rem 0 0; }
+.widget-card-body ul { margin: 0.35rem 0 0 1.1rem; padding: 0; color: var(--muted); }
 
 .phase-card h2 {
   font-size: 1rem;
@@ -538,22 +843,32 @@ button.primary:hover { opacity: 0.9; }
    viewport edge, same layout as LinkedIn's own messaging drawer: the
    header stays visible and IS the toggle in both states; collapsed it's
    just that strip, out of the way; expanded, the body opens upward above
-   it. z-index 90 stays under .sidenav's 100 so the slide-out menu always
-   wins if both happen to be open at once. */
+   it. z-index 90 stays under .sidenav's 100 as a safety net during the
+   push/pull transition below, though the two no longer overlap at rest.
+   Same flat background/border treatment as header.site-header (Step
+   374's own background-match), not the panel color it used before. */
 .chat-widget-dock {
   position: fixed;
-  right: 1.25rem;
+  right: calc(1.25rem + var(--sidenav-collapsed));
   bottom: 0;
   z-index: 90;
   width: min(320px, calc(100vw - 2.5rem));
   display: flex;
   flex-direction: column;
-  background: var(--panel);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-bottom: none;
   border-radius: 5px 5px 0 0;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+  transition: right 0.2s ease;
+}
+
+/* Step 375: pushed further left while the rail is expanded, pulled back
+   in when it collapses -- same 0.2s ease timing as .sidenav's own width
+   transition, so both move in sync off the one hamburger toggle. */
+body.sidenav-expanded .chat-widget-dock {
+  right: calc(1.25rem + min(var(--sidenav-expanded), 85vw));
 }
 
 .chat-widget-dock.expanded {
@@ -710,6 +1025,12 @@ footer.site-footer {
   color: var(--muted);
   font-size: 0.8rem;
   padding: 1.5rem;
+  padding-right: calc(1.5rem + var(--sidenav-collapsed));
+  transition: padding-right 0.2s ease;
+}
+
+body.sidenav-expanded footer.site-footer {
+  padding-right: calc(1.5rem + min(var(--sidenav-expanded), 85vw));
 }
 
 /* --- Profile page --- */
@@ -849,6 +1170,41 @@ button.small { padding: 0.4rem 0.75rem; font-size: 0.8rem; }
   border: 1px solid var(--border);
   border-radius: 5px;
   flex-wrap: wrap;
+}
+
+a.item-row {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.item-row:hover {
+  border-color: var(--accent);
+}
+
+/* Step 373: "Your free plan includes" -- five compact links per row
+   instead of one full-width row per page, so a 10-page plan doesn't
+   dominate the top of the page before a customer even reaches their
+   real dashboard below. #id selector deliberately outranks the shared
+   .item-list flex-column rule above without touching that class itself,
+   since .item-list/.item-row are reused by unrelated stacked lists. */
+#plan-summary-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+}
+
+#plan-summary-list .item-row {
+  padding: 0.5rem 0.7rem;
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  #plan-summary-list { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 480px) {
+  #plan-summary-list { grid-template-columns: repeat(2, 1fr); }
 }
 
 .item-row-main {

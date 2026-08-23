@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Gifts &amp; Relationships — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body data-next-step-page="gifts"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body data-next-step-page="gifts"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,40 +34,43 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html">Email</a></li>
-    <li><a href="/budget.html">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html">Managed Sites</a></li>
-    <li><a href="/infra.html">Server Infra</a></li>
-    <li><a href="/security.html">Security</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html">Goals</a></li>
-    <li><a href="/gifts.html" class="active">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html" class="active">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html">Move to external drive</a></li>
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 21: Personal Preferences, Gift-Giving &amp; Reminder Agent — Preview</h2>
-<h3>Documentation</h3>
-    <p>Two halves that share one idea — asking structured questions about what someone likes instead of guessing. The first half turns that toward you (sharper job-search matching); the second turns it toward the people in your life (gifts that land, sent on time), both on the new <a href="/gifts.html">Gifts &amp; Relationships</a> page and the job-search side of <a href="/goals.html">Goals</a>.</p>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 21: Personal Preferences, Gift-Giving &amp; Reminder Agent <span class="badge done">Built</span></h2>
+    <h3>Documentation</h3>
+    <p>Two halves that share one idea — asking structured questions about what someone likes instead of guessing. The first half turns that toward you (sharper job-search matching); the second turns it toward the people in your life (gifts that land, sent on time), both on the new <a href="gifts.html">Gifts &amp; Relationships</a> page and the job-search side of <a href="goals.html">Goals</a>.</p>
     <p><strong>Job-search preferences (Step 135):</strong> the same guided-intake pattern as Phase 17's life values, extended with a job-search-specific question set — industries you like or would rule out, preferred work environment, remote/hybrid/onsite, team size, management style, dealbreakers. These are stored as <code>LifeValues</code> rows tagged <code>context = job_search</code>, so <code>GET /life-values?context=job_search</code> reads just this set without touching Phase 17's general happiness intake. When you go to search Indeed, <code>GET /profile/{id}/indeed-search-criteria/suggested</code> pre-fills keywords and a remote-only guess from these answers — a suggestion you still review and submit yourself, never an auto-applied override; the response also names exactly which recorded preference fed each field.</p>
     <p><strong>Contacts &amp; preferences (Step 136):</strong> a <code>Contact</code> is who you might buy a gift for — name, relationship, birthday, anniversary, notes. Click <strong>Guided intake</strong> under a contact to answer a fixed set of prompts about them (what they collect or enjoy, clothing sizes, favorite colors, favorite brands or stores, and — the important one — <strong>anything to avoid</strong>: allergies, dietary restrictions, things they've said they don't want). Each non-blank answer becomes its own structured, categorized row, same "no freeform blob" discipline as every other guided intake in this project.</p>
     <p><strong>Occasion reminders (Step 137):</strong> add a <code>GiftOccasion</code> (birthday, anniversary, holiday, or custom) with a reminder lead time in days. <strong>Check reminders now</strong> runs <code>gift_reminder_job.process_reminders</code> for real — it flips <code>upcoming</code> to <code>reminded</code> once today crosses <code>occasion_date - reminder_lead_days</code>, and rolls a <code>recurring</code> occasion's date forward exactly one year once it's marked <code>handled</code> (with a Feb 29 fallback to Feb 28). There's no OS-level scheduler wired into this desktop app yet, so this is a manual trigger today — the same honest gap as every other "runs on a schedule" step in this plan; a cron/launchd entry would call the same endpoint.</p>
@@ -76,25 +79,36 @@
     <p class="notice"><strong>Honest gap:</strong> this backend has no live gift/flower provider API integration — Stripe lives only in <code>product_backend/</code> (Phase 13), not here. <code>attempt_auto_order</code> never places a real charge or fabricates an order confirmation; it reports exactly what it would do once a real provider is wired in ("selection succeeded but no real order was placed") instead of pretending success. Because of this, most drafted suggestions also carry no <code>estimated_price</code>, so most auto-order rules will honestly report "no suggestion within cap" until real pricing data exists. <strong>Order this</strong> on a suggestion is a manual log, not a checkout — you place the order yourself through whatever real storefront it points at, then record what you actually paid. See <code>CLAUDE_PLAN.md</code>'s "Known Limitations" section for the current full list.</p>
     <h3>Tutorial</h3>
     <ol>
-      <li>On <a href="/goals.html">Goals</a>, open <strong>Life values</strong> and try the job-search side of the guided intake (industries liked, remote preference, dealbreakers), then check that <code>GET /life-values?context=job_search</code> and the Indeed search-criteria suggestion both reflect it.</li>
-      <li>Open <a href="/gifts.html">Gifts &amp; Relationships</a> and add a contact, including a birthday.</li>
+      <li>On <a href="goals.html">Goals</a>, open <strong>Life values</strong> and try the job-search side of the guided intake (industries liked, remote preference, dealbreakers), then check that <code>GET /life-values?context=job_search</code> and the Indeed search-criteria suggestion both reflect it.</li>
+      <li>Open <a href="gifts.html">Gifts &amp; Relationships</a> and add a contact, including a birthday.</li>
       <li>Click <strong>Manage</strong>, run the <strong>Guided intake</strong>, and make sure to answer the "anything to avoid" prompt with something real.</li>
       <li>Add a <strong>Gift occasion</strong> dated within your reminder lead window, then click <strong>Check reminders now</strong> at the top of the page and watch its status flip to <code>reminded</code>.</li>
       <li>Click <strong>Get new suggestions</strong> and confirm every idea returned names the preference it matched, and that nothing drawn from the "avoid" answer appears.</li>
       <li>Add an <strong>Auto-order rule</strong>, click <strong>Attempt now</strong>, and read the honest result — it should say no live provider exists yet rather than claim an order happened.</li>
     </ol>
+    <h3>Next steps</h3>
+    <ul>
+      <li>Wire a real gift/flower ordering provider API into <code>gift_ordering_agent.py</code> so <code>attempt_auto_order</code> can place a real order instead of reporting the honest gap.</li>
+      <li>Have the gift suggestion agent estimate real prices (from web search results or a provider catalog) so auto-order rules have something to actually match against.</li>
+      <li>Wire an OS-level scheduler (cron/launchd) to call <code>POST /gift-occasions/process-reminders</code> automatically instead of the manual button.</li>
+      <li>Surface the job-search preference panel directly on the Job Search page (Step 62) as an optional "tell us what you're looking for" panel, per the original Step 135 plan text.</li>
+    </ul>
+    <p class="notice">See <a href="index.html#phase-21">Phase 21 on the Dashboard</a> for live step status, or <code>CLAUDE_PLAN.md</code> in the repo for the full plan.</p>
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>

@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Marketing — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body data-next-step-page="marketing"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body data-next-step-page="marketing"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,49 +34,52 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html">Email</a></li>
-    <li><a href="/budget.html">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html" class="active">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html">Managed Sites</a></li>
-    <li><a href="/infra.html">Server Infra</a></li>
-    <li><a href="/security.html">Security</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html">Goals</a></li>
-    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html" class="active">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html">Move to external drive</a></li>
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 11: Company Registry &amp; Marketing Plan Agent — Preview</h2>
-<h3>Documentation</h3>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 11: Company Registry &amp; Marketing Plan Agent <span class="badge done">Built</span></h2>
+    <h3>Documentation</h3>
     <p>Adds a <code>Company</code> registry — a company is owned either by a profile you control (<code>employee_owned</code>) or by a real Phase 9 <code>Employer</code> (<code>employer</code>, optionally linked to a Phase 10 <code>Business</code> for real financials). Each company gets one or more named <strong>marketing plans</strong> made of <code>MarketingPlanElement</code> rows — target-audience notes, messaging, one row per channel, an optional budget line, and KPI targets — plus a <code>MarketingResult</code> log for recording real metrics against any element later. The <strong>marketing agent</strong> (<code>marketing_agent.py</code>) drafts a full plan skeleton from a plan name, target audience, goals, and a channel list: every element it creates lands at <code>status="draft"</code>, nothing is ever auto-published or auto-spent. For an <code>employee_owned</code> company, a requested budget line calls the real Phase 8 budget engine and suggests 10% of the profile's actual positive monthly surplus. For an <code>employer</code> company, the agent may only read that business's numbers through a valid Phase 10 <code>EmployeeAccessGrant</code> — the exact same default-deny gate the Business Stats shared-summary view enforces, no exceptions for marketing — and suggests 5% of the most recently reported (and shareable) profit.</p>
     <p>Steps 32&ndash;35/55 add employer-side workforce coordination on top of the core plan tooling: <strong>Work assignments</strong> can only go to a Phase 9 participant who is already <code>opted_in</code> on their profit-share proposal — assigning work only <em>requests</em> tracking, it never grants it, and only the assigned person can move <code>tracking_consent</code> to <code>opted_in</code>. Once consented, progress syncs through <code>progress_tracker.py</code> or the dashboard directly, gated on <strong>both</strong> that consent and a matching, active, opaque <code>WorkerDevice</code> registration — never keystroke logs, screenshots, screen recording, browser history, or file-content scraping, regardless of what an employer might ask for. Revoking a device makes its very next sync fail closed. The <strong>performance monitor</strong> gives the employer a read-only rollup (total time logged, latest task-completion percentage, optional per-device breakdown) — visibility only, never an automated action — and every load is written to the linked business's access audit log so a participant can always see who looked, and when. <strong>Territories</strong> describe a marketing target (a place or demographic, never a location a device must physically sit in) with minimum hardware requirements; a <code>TerritoryContract</code> only moves to <code>accepted</code> once the linked device's real specs are checked against those minimums — reject, never a silent pass.</p>
     <h3>Tutorial</h3>
     <ol>
-      <li>Open the <a href="/marketing.html">Marketing</a> page and pick a profile.</li>
+      <li>Open the <a href="marketing.html">Marketing</a> page and pick a profile.</li>
       <li>For an employee-owned company: create one with type <strong>Employee-owned</strong>, then use <strong>Generate a draft plan</strong> — a plan name, target audience, goals, and a comma-separated channel list (e.g. <code>Content/SEO, Social Media, Email List</code>). Leave the budget checkbox on for a suggestion sourced from that profile's real Budget page numbers.</li>
-      <li>For an employer company: first add a real <a href="/employer.html">Employer</a> and, if you want business-backed numbers, a <a href="/business-stats.html">Business</a> linked to it with an access grant. Create the company with type <strong>Employer</strong>, its Employer ID, and (optionally) the Business ID. Generating a plan now requires that Business Stats access grant's ID — try it without one first and confirm it's rejected.</li>
+      <li>For an employer company: first add a real <a href="employer.html">Employer</a> and, if you want business-backed numbers, a <a href="business-stats.html">Business</a> linked to it with an access grant. Create the company with type <strong>Employer</strong>, its Employer ID, and (optionally) the Business ID. Generating a plan now requires that Business Stats access grant's ID — try it without one first and confirm it's rejected.</li>
       <li>Review the drafted elements — each has an editable status (<code>draft</code> &rarr; <code>proposed</code> &rarr; <code>active</code> &rarr; <code>paused</code>/<code>completed</code>) you move by hand as the plan actually happens.</li>
       <li>On an employer company, open <strong>Work assignments</strong> and assign work to an opted-in participant. Open the assignment, move <code>tracking_consent</code> to <code>opted_in</code>, register a device, and log a progress metric — notice logging is blocked until both are true.</li>
-      <li>Click <strong>Load performance monitor</strong> to see the rollup, then check the linked business's Access Audit Log on the <a href="/business-stats.html">Business Stats</a> page — your read just showed up there.</li>
+      <li>Click <strong>Load performance monitor</strong> to see the rollup, then check the linked business's Access Audit Log on the <a href="business-stats.html">Business Stats</a> page — your read just showed up there.</li>
       <li>Add a <strong>Territory</strong> with minimum hardware requirements, propose a contract with a weak device and watch it get rejected on Accept, then propose one with a device that actually qualifies.</li>
     </ol>
 
@@ -113,20 +116,37 @@
       <li>On the <strong>Mine</strong> tab, click <strong>Approve</strong> on your new listing so it becomes publicly listed.</li>
       <li>Back here on <strong>Marketing Plan Modules</strong>, pick a profile and company, click <strong>Refresh list</strong>, and find your listing in the catalog.</li>
       <li>Click <strong>Download</strong> or <strong>Install</strong> — either one fetches the real content and shows you its plan name, elements, and media filenames.</li>
-      <li>Click <strong>Enable</strong> — confirm a real new marketing plan now exists on the company you picked, on the <a href="/marketing.html">Marketing</a> page.</li>
+      <li>Click <strong>Enable</strong> — confirm a real new marketing plan now exists on the company you picked, on the <a href="marketing.html">Marketing</a> page.</li>
     </ol>
+    <h3>Next steps</h3>
+    <ul>
+      <li>List a Marketing Plan Module on <a href="https://globalwebmethods.com/modules.html" target="_blank" rel="noopener">gwm_site</a>, plain or video-inclusive.</li>
+      <li>Browse and install a Marketing Plan Module into a company that doesn't have a plan yet.</li>
+      <li>Push an oversized (or just worth-keeping) plan to your own private GitHub repo, then send it to a second account and confirm the pull clones it fresh.</li>
+      <li>Dispatch a plan's ad-image composition to a rented computer via the Phase 18 compute marketplace, and confirm the composed result lands back in your own repo's <code>results/</code> folder.</li>
+      <li>Add your real employer's company here and generate a plan through the real Phase 10 access-grant gate.</li>
+      <li>Assign work to an opted-in colleague and watch the performance monitor roll up their real progress.</li>
+      <li>Try a territory contract with a device that doesn't meet the minimums, and confirm it's rejected rather than silently accepted.</li>
+      <li>Build a full plan with the Marketing Plan Creator, send it to a real second account, and deploy it from that account's own device — the full employer-to-employee handoff, end to end.</li>
+      <li>Watch Phase 15 (Business Model) once built — it extends this same Company registry with financial statements, invoices, and proposals.</li>
+    </ul>
+    <p class="notice">See <a href="index.html#phase-11">Phase 11 on the Dashboard</a> for live step status, or <code>CLAUDE_PLAN.md</code> in the repo for the full plan.</p>
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>

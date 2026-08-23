@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function () {
+  var saved = localStorage.getItem("theme");
+  var theme = saved || (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
+<title>Logs — LifeModel Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta p { margin: 0 0 0.75rem; }
+.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
+.teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
+</style>
+</head>
+<body data-next-step-page="logs"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<header class="site-header">
+  <h1>LifeModel Dashboard</h1>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
+    <span class="menu-btn"><span class="menu-btn__burger"></span></span>
+  </button>
+</header>
+
+<nav id="side-menu" class="sidenav" aria-label="Site menu">
+  <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
+  <ul>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html" class="active">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
+    <li class="has-children">
+      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu">
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
+      </ul>
+    </li>
+    <li><a href="upload.html">📄 Documents</a></li>
+  </ul>
+</nav>
+
+<main>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 40: Log Search &amp; Live Tail <span class="badge done">Built</span></h2>
+    <p class="notice"><strong>Read this first, because it shapes everything below: this is a poll, not a live stream, and nothing is installed on any server to make it work.</strong> A real log platform ships a forwarder daemon onto every host. This project has committed never to install an agent on a server, so log lines are <em>pulled</em> over connections that already exist &mdash; the same SSM tunnel and SSH that deploys and health checks already use. The honest consequence is a real latency floor: new lines appear after the next poll, not instantly. The page says so in those words rather than calling itself a live tail.</p>
+    <h3>Documentation</h3>
+    <p>The <a href="logs.html">Logs</a> page searches log lines from the servers you run and the client sites you manage. Reach it from the side menu, or from the <strong>Logs</strong> button sitting next to <strong>Server Infra</strong> on any row in <a href="managed-sites.html">Managed Sites</a>, which opens the page already scoped to that one site.</p>
+    <ul>
+      <li><strong>Filters, deliberately not a query language.</strong> Source, time range, level, status class (2xx/3xx/4xx/5xx), method, client IP, path, and free-text search over the raw line. A half-working query language that silently mis-parses is worse than none, so that was decided against in writing rather than drifted into. Every filter lives in the page's URL, so a filtered view can be bookmarked or shared and survives a reload.</li>
+      <li><strong>A timeline strip</strong> above the results, which is how you find a spike before you know what to search for. Empty buckets are drawn as gaps &mdash; the histogram never compresses quiet periods out of existence to make the bars look denser.</li>
+      <li><strong>Patterns.</strong> The same lines grouped by shape, so a few thousand rows read as a handful of real things (in testing, 1,193 lines collapsed to 3). This is plain deterministic string work computed on your own machine. <strong>Log lines are never sent to any AI model</strong> &mdash; a log line carries a real visitor's IP address, the URL they requested and their user-agent, which this project's application/agent split does not allow near a model.</li>
+      <li><strong>Secrets are stripped at ingest, before anything is written down.</strong> Bearer tokens, secret-bearing query parameters, AWS key ids and private-key blocks are replaced with a visible <code>[redacted]</code> marker, and the row is flagged so you can tell a redaction apart from text that was literally there. Not hypothetical: real credential-probe traffic already appears in these logs.</li>
+      <li><strong>Sources are discovered, never assumed.</strong> A log path that does not exist, or that the stored SSH user cannot read, produces no source at all and says why &mdash; it is never given an empty row that looks like "nothing happened". A client site with no SSH credential simply reports that, plainly.</li>
+    </ul>
+    <p><strong>What works across platforms, and what does not.</strong> The web-server access log is the same everywhere &mdash; nginx and Apache do not care whether WordPress, Drupal, ASP.NET Core or anything else sits behind them &mdash; so that part generalises with no per-platform work. Application logs differ, and are handled by <em>where the log lives</em> rather than by which CMS it is: a WordPress site's PHP error log is an ordinary file; <strong>Drupal's default logging is a database table</strong> (core's <code>dblog</code> module writes to <code>watchdog</code>, so there is nothing to tail and it is read as a query instead); and <strong>IIS/ASP.NET on Windows is registerable but cannot yet be read</strong> &mdash; that needs WinRM rather than SSH, and is not built. An ASP.NET Core app behind nginx on Linux works today with no special handling.</p>
+    <h3>Tutorial</h3>
+    <ol>
+      <li>Open <a href="logs.html">Logs</a> from the side menu.</li>
+      <li>Click <strong>Register this server's own logs</strong> to add the shared instance's nginx access log and each backend service's systemd journal.</li>
+      <li>For a client site, open <a href="managed-sites.html">Managed Sites</a>, click <strong>Logs</strong> on that site's row, then <strong>Find logs on this client site</strong>. If the site has no stored SSH credential, it will tell you so rather than appearing to work.</li>
+      <li>Click <strong>Fetch now</strong> for an immediate pull, or wait for the scheduled poll. This opens a real connection and takes a few seconds.</li>
+      <li>Set <strong>Status</strong> to <strong>5xx server error</strong> and click <strong>Apply</strong> &mdash; note the filter appears in the address bar, so you can bookmark this exact view.</li>
+      <li>Read the <strong>Patterns</strong> table before scrolling the raw rows. It usually answers the question faster.</li>
+      <li>Expand <strong>raw</strong> on any row to see the exact stored line.</li>
+      <li>Click <strong>&larr; Back</strong> to return where you came from.</li>
+    </ol>
+    <h3>Next steps</h3>
+    <ul>
+      <li>Run one real poll against a real host and confirm actual lines land &mdash; every transport path is currently proven against tests, not against a live server.</li>
+      <li>Check the <strong>What is kept</strong> line before concluding something did not happen: an empty result older than the retention window is the limit, not an absence of events.</li>
+      <li>If you manage Windows/IIS sites, decide whether the WinRM transport is worth building before relying on this for them.</li>
+    </ul>
+    <p class="notice">See <a href="index.html#phase-40">Phase 40 on the Dashboard</a> for live step status, or <code>CLAUDE_PLAN.md</code> in the repo for the full plan.</p>
+
+<div class="teaser-cta">
+  <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
+</div>
+</main>
+
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
+
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
+</body>
+</html>

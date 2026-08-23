@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Agent — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body data-next-step-page="agent"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body data-next-step-page="agent"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,68 +34,82 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html" class="active">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html">Email</a></li>
-    <li><a href="/budget.html">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html">Managed Sites</a></li>
-    <li><a href="/infra.html">Server Infra</a></li>
-    <li><a href="/security.html">Security</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html">Goals</a></li>
-    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html" class="active">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html">Move to external drive</a></li>
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 2: AI Agent &amp; Automation — Preview</h2>
-<h3>Documentation</h3>
-    <p>Reads a target web form's fields and matches them against your Phase 1 vault data — a zero-setup heuristic matcher by default, or a local Ollama model for better matches on oddly-labeled fields (nothing ever leaves your machine either way). A field only gets filled if the match is confident <em>and</em> your vault actually has data for it; otherwise it's left unmapped rather than guessed. The agent can type matched values into the form for your review, but it never clicks submit — that stays a manual step in your own browser. Form-filling itself lives on its own dedicated <a href="/form-filler.html">Fill a Form</a> page — the <a href="/agent.html">Agent</a> page is where the backend/hardware setup, remote model connections, and data permissions live.</p>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 2: AI Agent &amp; Automation <span class="badge done">Built</span></h2>
+    <h3>Documentation</h3>
+    <p>Reads a target web form's fields and matches them against your Phase 1 vault data — a zero-setup heuristic matcher by default, or a local Ollama model for better matches on oddly-labeled fields (nothing ever leaves your machine either way). A field only gets filled if the match is confident <em>and</em> your vault actually has data for it; otherwise it's left unmapped rather than guessed. The agent can type matched values into the form for your review, but it never clicks submit — that stays a manual step in your own browser. Form-filling itself lives on its own dedicated <a href="form-filler.html">Fill a Form</a> page — the <a href="agent.html">Agent</a> page is where the backend/hardware setup, remote model connections, and data permissions live.</p>
     <p><strong>Remote models (optional):</strong> you can also connect a ChatGPT (OpenAI), Grok (xAI), Gemini (Google), or Claude (Anthropic) account for tasks a local model handles less well — drafting a resume summary, a contract, or marketing copy. Local Ollama/LM Studio/heuristic matching is completely unaffected either way; nothing they process ever leaves this machine. A remote model only ever sees the categories of vault data you've explicitly checked in <strong>Data access permissions</strong> — unchecked by default, every one of them — and every real call is written to that account's <strong>usage log</strong> so you can check exactly what was actually sent, not just what was allowed.</p>
     <p><strong>AI providers (Steps 323-325):</strong> the Agent page's <strong>AI providers</strong> panel is the real answer to "what are my actual options for running a model on this site." Six starters ship tracked by default — OpenAI/ChatGPT, xAI/Grok, Google/Gemini, Anthropic/Claude, and the two local runners, Ollama and LM Studio — each with its own plans, pricing, strengths/weaknesses, and real, concrete <strong>setup instructions written specifically for implementing it as an EasyLifeAgent backend</strong> (not just generic "how to use this product" copy). A wider catalog of real, major providers — Meta, Mistral, Cohere, Amazon Bedrock, Azure AI Foundry, watsonx, DeepSeek, Alibaba Qwen, Perplexity, Together AI, Groq (fast-inference hosting — a completely different company from xAI's Grok, despite the near-identical name), Fireworks AI, Hugging Face, NVIDIA NIM, Replicate, and GPT4All — is one click away in the <strong>Add a provider</strong> dropdown; adding one tracks it and shows its card, removing one untracks it (never deletes its research history), and a provider still backing a connected account can't be removed until you disconnect it first. Only the six starters are actually wired as selectable backends today — every wider-catalog card says so plainly and points you to that company's own site instead of a fake Connect button. <strong>Pricing/plans data is real and cited</strong>: a background pass refreshes anything not checked in the last week (each card shows exactly when it was last verified and links to its real sources), a <strong>Refresh</strong> button forces an immediate re-check any time, and a failed check (a page changed, a site blocked the request) never blanks out or guesses over the last known-good numbers — it just says so.</p>
-    <p><strong>Chat widget (Steps 193-195/328-330):</strong> Chat is no longer its own page — it's a persistent component on every page, collapsed to a small tab bottom-right or expanded to a full frame with one click, the same shape as a LinkedIn messaging drawer. Ask a real question (budget, documents, applications, profile facts all answered from real data, deterministic, no model required) or ask for something to be done — anything consequential (applying a field, deleting/importing a file, confirming an update) is only ever described with a link to the real page/button, chat itself never performs it. On a page with a real task registered (today, just <a href="/form-filler.html">Fill a Form</a>'s field-matching), the widget's header shows a real, live <strong>agent picker</strong> — which of the six wired AI providers can actually do this job, sourced from the same capability check Steps 311/312 already built — and switching there changes the one real global backend setting, the same one the Agent page's own setup panel shows. The widget's second tab, <strong>Fill a form from a file</strong>, picks an already-uploaded document (or uploads a new one) and uses its real extracted text as the fill source instead of your Profile — same hallucination guard as Phase 1's document intake (a field only fills if it was actually found in that document's text), same review-before-fill screen as a Profile-sourced run.</p>
+    <p><strong>Chat widget (Steps 193-195/328-330):</strong> Chat is no longer its own page — it's a persistent component on every page, collapsed to a small tab bottom-right or expanded to a full frame with one click, the same shape as a LinkedIn messaging drawer. Ask a real question (budget, documents, applications, profile facts all answered from real data, deterministic, no model required) or ask for something to be done — anything consequential (applying a field, deleting/importing a file, confirming an update) is only ever described with a link to the real page/button, chat itself never performs it. On a page with a real task registered (today, just <a href="form-filler.html">Fill a Form</a>'s field-matching), the widget's header shows a real, live <strong>agent picker</strong> — which of the six wired AI providers can actually do this job, sourced from the same capability check Steps 311/312 already built — and switching there changes the one real global backend setting, the same one the Agent page's own setup panel shows. The widget's second tab, <strong>Fill a form from a file</strong>, picks an already-uploaded document (or uploads a new one) and uses its real extracted text as the fill source instead of your Profile — same hallucination guard as Phase 1's document intake (a field only fills if it was actually found in that document's text), same review-before-fill screen as a Profile-sourced run.</p>
     <h3>Tutorial</h3>
     <ol>
-      <li>Open the <a href="/agent.html">Agent</a> page. The setup panel shows your detected hardware and a recommended local model tier.</li>
+      <li>Open the <a href="agent.html">Agent</a> page. The setup panel shows your detected hardware and a recommended local model tier.</li>
       <li>(Optional) Switch the backend to <strong>Local Ollama</strong> or <strong>Local LM Studio</strong>, enter/confirm a model, and click <strong>Pull model</strong>/<strong>Check connection</strong> — or just leave it on the default heuristic matcher, which works immediately.</li>
       <li>Scroll to <strong>AI providers</strong> — read a starter card's plans/pricing/strengths/weaknesses and expand its <strong>Setup instructions</strong>. Click <strong>Refresh</strong> on one and watch its "Last verified" line update to just now.</li>
       <li>Open <strong>Add a provider</strong>, pick one from the wider catalog (e.g. Mistral AI), and click <strong>Add</strong> — its card appears and a real pricing check kicks off automatically since it's brand new. Click <strong>Remove from this page</strong> to confirm it drops back out.</li>
       <li>Click the chat tab, bottom-right, on any page — it expands into a full frame. Pick a profile, click <strong>+ New chat</strong>, and try "what does this month look like?" or "how many documents do I have?" — then try "delete my old documents" and notice it only describes what to do and links to the real page.</li>
-      <li>Open <a href="/form-filler.html">Fill a Form</a> and open the widget there — its header now shows the real agent picker for this specific task; try switching agents and confirm the Agent page's own setup panel reflects the same change.</li>
+      <li>Open <a href="form-filler.html">Fill a Form</a> and open the widget there — its header now shows the real agent picker for this specific task; try switching agents and confirm the Agent page's own setup panel reflects the same change.</li>
       <li>Under <strong>Fill a form</strong>, pick a profile and paste a target form's URL, then click <strong>Analyze form</strong>; review the matched fields (each shows what it matched to and the confidence) and click <strong>Confirm &amp; Fill</strong> — nothing is submitted, that stays a manual step in your own browser.</li>
       <li>In the widget, switch to <strong>Fill a form from a file</strong>, upload a real document (or pick one already uploaded with extracted text), and confirm the review screen shows fields genuinely pulled from that document, not your Profile.</li>
       <li><em>Optional:</em> from an AI providers card, click <strong>Connect account</strong> to add a ChatGPT/Grok/Gemini/Claude API key. Check the boxes you want to allow under <strong>Data access permissions</strong>, then select that provider as your backend — you'll see a one-time warning before saving.</li>
       <li>Click <strong>View usage log</strong> on a connected account any time to see exactly what's actually been sent to it.</li>
     </ol>
+    <h3>Next steps</h3>
+    <ul>
+      <li>Try filling a form from an already-uploaded document instead of your Profile, in the chat widget's second tab.</li>
+      <li>Add a provider from the wider AI providers catalog and confirm its pricing/plans data is real and cited, not generic placeholder text.</li>
+      <li>Ask the chat widget a question specific to a phase you've already built (budget, documents, applications) and see how it cites the real numbers/facts it used.</li>
+      <li>Try a consequential request ("delete", "apply", "confirm an update") and confirm it only ever links you to the real page instead of acting on its own.</li>
+      <li>Connect a remote model on the Agent page, grant a category or two under Data access permissions, then ask the widget something open-ended and check its usage log entry.</li>
+    </ul>
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>

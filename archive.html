@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Archive — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body data-next-step-page="archive"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body data-next-step-page="archive"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,68 +34,82 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html">Email</a></li>
-    <li><a href="/budget.html">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html">Managed Sites</a></li>
-    <li><a href="/infra.html">Server Infra</a></li>
-    <li><a href="/security.html">Security</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html">Goals</a></li>
-    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
-      <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
-      <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html" class="active">Move to external drive</a></li>
+      <button type="button" class="submenu-toggle" aria-expanded="true" aria-controls="cleanup-submenu">Clean your computer</button>
+      <ul id="cleanup-submenu" class="submenu open">
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html" class="active">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 5: Filesystem Path Registry &amp; Cleanup — Preview</h2>
-<h3>Documentation</h3>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 5: Filesystem Path Registry &amp; Cleanup <span class="badge done">Built</span></h2>
+    <h3>Documentation</h3>
     <p>Three registries: <strong>protected paths</strong> that must never be touched, <strong>junk paths</strong> that accumulate disposable files (a folder, a glob pattern like <code>*.tmp</code>, a max age in days, and how often to check), and <strong>notes paths</strong> (pure organizational metadata — no automation reads these). None of this is tied to a profile; it describes the machine, not a person.</p>
     <p>A <strong>dry-run</strong> scans a junk path fresh every time and reports exactly what it would remove — it never deletes anything. <strong>Confirm deletion</strong> re-scans (never reuses a stale list) and actually removes matches, but only after every candidate is cross-checked against every protected path first: if even one match falls under a protected path, the <em>entire run</em> is blocked and nothing is deleted at all — not even the files that had no conflict. Every run, dry or confirmed, is logged in the run history below with what matched, what was removed, and bytes freed.</p>
     <p>A cron job runs the dry-run scan daily (see <code>backend/scripts/run_cleanup_dryrun.py</code> and <code>crontab -l</code>) for whichever junk paths are due per their own <code>cleanup_frequency</code> — the schedule only ever triggers a dry-run report; actual deletion is always a direct, explicit click on this page.</p>
-    <p><strong>Software leftovers:</strong> the <a href="/leftovers.html">Software leftovers</a> page knows what came with the OS (a seeded baseline per target — WSL2 and Windows) and can do a real read of what's actually installed right now (<code>dpkg-query</code> on WSL2, the same registry hives Windows' own "Apps &amp; Features" panel reads on Windows). A folder under <code>/opt</code>, <code>/usr/local</code>, <code>Program Files</code>, or similar only gets flagged when it's outside that baseline <em>and</em> nothing currently installed owns it — every flagged item states that exact reason. This is a heuristic, not a certainty, so there's no auto-delete mode at all: every deletion is reviewed and confirmed one at a time, and anything under a protected path is skipped and shown as blocked.</p>
-    <p><strong>Move to external drive:</strong> the <a href="/archive.html">Move to external drive</a> page is for real, wanted files (old photos, finished projects) rather than junk. Register a drive and a folder to watch, and it suggests files that are both large <em>and</em> old — a recent large file or a small old one is left alone. Confirming a move copies the file to the drive first, verifies the copy against the original by size <strong>and</strong> a streamed content hash (Step 211 — a copy that's the right size but silently corrupted, from a flaky drive or a dropped connection, is caught before the original is ever removed), and only then deletes the source. No auto-move mode here either; every move is its own explicit click.</p>
+    <p><strong>Software leftovers:</strong> the <a href="leftovers.html">Software leftovers</a> page knows what came with the OS (a seeded baseline per target — WSL2 and Windows) and can do a real read of what's actually installed right now (<code>dpkg-query</code> on WSL2, the same registry hives Windows' own "Apps &amp; Features" panel reads on Windows). A folder under <code>/opt</code>, <code>/usr/local</code>, <code>Program Files</code>, or similar only gets flagged when it's outside that baseline <em>and</em> nothing currently installed owns it — every flagged item states that exact reason. This is a heuristic, not a certainty, so there's no auto-delete mode at all: every deletion is reviewed and confirmed one at a time, and anything under a protected path is skipped and shown as blocked.</p>
+    <p><strong>Move to external drive:</strong> the <a href="archive.html">Move to external drive</a> page is for real, wanted files (old photos, finished projects) rather than junk. Register a drive and a folder to watch, and it suggests files that are both large <em>and</em> old — a recent large file or a small old one is left alone. Confirming a move copies the file to the drive first, verifies the copy against the original by size <strong>and</strong> a streamed content hash (Step 211 — a copy that's the right size but silently corrupted, from a flaky drive or a dropped connection, is caught before the original is ever removed), and only then deletes the source. No auto-move mode here either; every move is its own explicit click.</p>
     <p><strong>Safety hardening (Steps 209&ndash;213), added once these features became a free, widely-downloadable tier (Phase 13):</strong> a confirmed cleanup or leftover deletion never disappears immediately — it moves into a 14-day <strong>quarantine</strong> (Step 209) with a <strong>Restore</strong> button right on the page it was deleted from; only a scheduled job (<code>scripts/run_quarantine_purge.py</code>) makes it permanent, and only once that window passes. <strong>Protected paths</strong> now seeds real OS-critical defaults on first run (Step 210) — <code>/etc</code>, <code>/usr</code>, <code>C:\Windows</code>, <code>C:\Program Files</code>, and this app's own data directory — marked distinctly from anything you add yourself, so a free-tier install has real built-in protection even if you never visit that page. Every dry-run/scan now returns an opaque <strong>scan token</strong> (Step 212) that the matching confirm action must present back — a cleanup confirm literally only ever acts on the exact file list from one specific, still-fresh (30-minute) dry-run, never an independent rescan that could sweep up a file you were never shown; the leftover and move-suggestion queues use the same token to prove a confirm click is actually backed by the current proposal, with no time limit since those are meant to be reviewed at leisure. Finally, every page here shows a banner if the app is running with elevated (root/Administrator) privileges (Step 213, informational only), and the real-write confirm endpoints are rate-limited so a runaway script fails fast instead of deleting at machine speed.</p>
     <h3>Tutorial</h3>
     <ol>
-      <li>Open the <a href="/filesystem.html">Filesystem</a> page.</li>
+      <li>Open the <a href="filesystem.html">Filesystem</a> page.</li>
       <li>Under <strong>Protected paths</strong>, notice the paths already seeded and marked "seeded — OS-critical" — add anything else that must never be touched, like your own repo or a config directory.</li>
       <li>Under <strong>Junk paths</strong>, add a folder + glob pattern (e.g. <code>*.tmp</code> or <code>node_modules</code>) + max age + how often to check.</li>
       <li>Click <strong>Run dry-run</strong> and review the reported matches and freed-space estimate in the <strong>Cleanup run log</strong> below before doing anything else.</li>
       <li>If it looks right, click <strong>Confirm deletion</strong> within the next 30 minutes — you'll be asked to confirm once more before anything real happens. If any match overlaps a protected path, you'll see "Blocked" and nothing is deleted; otherwise, matches move into the <strong>Recently deleted</strong> panel, restorable for 14 days.</li>
       <li><strong>Notes paths</strong> is just a reference map (category name &rarr; folder) — informational only.</li>
-      <li>Open the <a href="/leftovers.html">Software leftovers</a> page, click <strong>Refresh</strong> under Installed software for your target, then <strong>Scan</strong> under the leftover queue. Review each candidate's reason before clicking <strong>Confirm delete</strong> (also lands in that page's own Recently deleted panel) or <strong>Dismiss</strong>.</li>
-      <li>Open the <a href="/archive.html">Move to external drive</a> page, register a drive and a folder to watch, then click <strong>Scan watched folders</strong>. Pick a drive with enough free space shown and click <strong>Move</strong>, or <strong>Dismiss</strong> a suggestion you'd rather keep in place — the move log shows the verified content hash once it completes.</li>
+      <li>Open the <a href="leftovers.html">Software leftovers</a> page, click <strong>Refresh</strong> under Installed software for your target, then <strong>Scan</strong> under the leftover queue. Review each candidate's reason before clicking <strong>Confirm delete</strong> (also lands in that page's own Recently deleted panel) or <strong>Dismiss</strong>.</li>
+      <li>Open the <a href="archive.html">Move to external drive</a> page, register a drive and a folder to watch, then click <strong>Scan watched folders</strong>. Pick a drive with enough free space shown and click <strong>Move</strong>, or <strong>Dismiss</strong> a suggestion you'd rather keep in place — the move log shows the verified content hash once it completes.</li>
     </ol>
+    <h3>Next steps</h3>
+    <ul>
+      <li>Refresh installed software for both targets, then run a leftover scan and see what — if anything — it actually finds on your machine.</li>
+      <li>Register a real folder (Downloads, a project archive) as an archive watch path and see what large, old files it surfaces.</li>
+      <li>Delete something on purpose via a dry-run/confirm, then use the Recently deleted panel to restore it — confirm it lands back exactly where it was.</li>
+      <li>Add a few of your own entries to the OS baseline list if anything atypical on your machine keeps getting flagged as a leftover.</li>
+    </ul>
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>

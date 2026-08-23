@@ -11,8 +11,7 @@
 })();
 </script>
 <title>Managed Sites — LifeModel Dashboard</title>
-<link rel="stylesheet" href="/css/style.css">
-
+<link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
@@ -20,9 +19,10 @@
 .teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
+.teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
 </style>
 </head>
-<body data-next-step-page="managed-sites"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://globalwebmethods.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
+<body data-next-step-page="managed-sites"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>LifeModel Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
@@ -34,37 +34,42 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="/index.html">Dashboard</a></li>    <li><a href="/profile.html">Profile</a></li>
-    <li><a href="/agent.html">Agent</a></li>
-    <li><a href="/form-filler.html">Fill a Form</a></li>
-    <li><a href="/email.html">Email</a></li>
-    <li><a href="/budget.html">Budget</a></li>
-    <li><a href="/employer.html">Employer</a></li>
-    <li><a href="/projects.html">Projects</a></li>
-    <li><a href="/business-stats.html">Business Stats</a></li>
-    <li><a href="/marketing.html">Marketing</a></li>
-    <li><a href="/business-model.html">Business Model</a></li>
-    <li><a href="/managed-sites.html" class="active">Managed Sites</a></li>
-    <li><a href="/conversion-templates.html">Conversion Templates</a></li>
-    <li><a href="/jobs.html">Jobs</a></li>
-    <li><a href="/goals.html">Goals</a></li>
-    <li><a href="/gifts.html">Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html">👤 Profile</a></li>
+    <li><a href="agent.html">🤖 Agent</a></li>
+    <li><a href="form-filler.html">📝 Fill a Form</a></li>
+    <li><a href="email.html">📧 Email</a></li>
+    <li><a href="budget.html">💰 Budget</a></li>
+    <li><a href="employer.html">🏢 Employer</a></li>
+    <li><a href="projects.html">📋 Projects</a></li>
+    <li><a href="business-stats.html">📈 Business Stats</a></li>
+    <li><a href="marketing.html">📣 Marketing</a></li>
+    <li><a href="business-model.html">🏗️ Business Model</a></li>
+    <li><a href="managed-sites.html" class="active">🌐 Managed Sites</a></li>
+    <li><a href="infra.html">🖥️ Server Infra</a></li>
+    <li><a href="logs.html">📜 Logs</a></li>
+    <li><a href="security.html">🔒 Security</a></li>
+    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
+    <li><a href="jobs.html">💼 Jobs</a></li>
+    <li><a href="goals.html">🎯 Goals</a></li>
+    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="/filesystem.html">Filesystem cleanup</a></li>
-        <li><a href="/maintenance.html">System maintenance</a></li>
-        <li><a href="/leftovers.html">Software leftovers</a></li>
-        <li><a href="/archive.html">Move to external drive</a></li>
+        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
+        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
+        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
+        <li><a href="archive.html">💾 Move to external drive</a></li>
       </ul>
     </li>
-    <li><a href="/upload.html">Documents</a></li>
+    <li><a href="upload.html">📄 Documents</a></li>
   </ul>
 </nav>
 
 <main>
-<h2>Phase 25: Managed Client Websites — Preview</h2>
-<h3>Documentation</h3>
+<p class="teaser-disclaimer">Below is this feature's real documentation and tutorial. On this preview the buttons and forms it describes aren't wired up -- subscribe to use them for real.</p>
+
+<h2>Phase 25: Managed Client Websites <span class="badge in_progress">In progress</span></h2>
+    <h3>Documentation</h3>
     <p><strong>What this is:</strong> private tooling for actually running the maintenance side of the Global Web Methods (Phase 14) freelance business — the real client sites the user maintains, how to securely reach each one, and (with explicit confirmation) how to apply a real update. This lives in <code>personal_vault.db</code> like every other profile/company-scoped table, not a separate public service.</p>
     <p><strong>Adding a site:</strong> pick a Profile and Company on the Managed Sites page, then <strong>+ Add site</strong> — client name, site URL, and CMS type (WordPress, Drupal, or Other/none). <code>cms_type = other</code> is a real, honest state: there's no update checker for it, used here for infrastructure that isn't a client CMS site at all (this project's own EC2 test instance, for example).</p>
     <p><strong>Credentials:</strong> click <strong>Manage</strong> on a site, then <strong>+ Add credential</strong>. An SSH credential's secret (password or private key) is stored via the OS keyring the moment you save it and is never shown again — the list only ever shows whether a secret is stored, never its value. An AWS SSM credential instead records the instance id/region, since SSM access is governed by IAM permissions rather than a stored secret.</p>
@@ -75,7 +80,7 @@
     <p><strong>Storing a backup off the client's server (Step 232):</strong> a backup sitting only on the same server that's about to be updated isn't much of a safety net if that update — or the server — fails badly. Click <strong>Store backup</strong> next to any run with a backup reference to download it and keep a copy either on a registered external drive (the same <code>ExternalDrives</code> registry the Archive page uses, with a real free-space check first) or in the local vault's own storage on this machine. Every stored copy shows up in the <strong>Stored backups</strong> list per site, with exactly where it lives.</p>
     <h3>Tutorial</h3>
     <ol>
-      <li>Open the <a href="/managed-sites.html">Managed Sites</a> page, pick a profile and company.</li>
+      <li>Open the <a href="managed-sites.html">Managed Sites</a> page, pick a profile and company.</li>
       <li>Click <strong>+ Add site</strong> and register a real client site (or a test entry, with CMS type Other/none).</li>
       <li>Click <strong>Manage</strong> on it, then <strong>+ Add credential</strong> to store how the vault should reach it.</li>
       <li>Click <strong>Check for updates</strong> — for a WordPress/Drupal site with a working SSH credential, review the real component list; otherwise read the honest reason it couldn't check.</li>
@@ -84,18 +89,28 @@
       <li>Click <strong>Store backup</strong> on that run and choose Local vault or an External drive — check the Stored backups list to confirm it landed.</li>
       <li>If an update goes wrong, click <strong>Roll back</strong> on the run and confirm — watch its status become <code>rolled_back</code>, or read the honest error if the on-server agent couldn't be reached.</li>
     </ol>
+    <h3>Next steps</h3>
+    <ul>
+      <li>Register a real client site and its actual SSH credential, then run a real Check for updates against it.</li>
+      <li>Install the on-server agent on a real WordPress or Drupal test site and confirm its <code>status</code>/<code>backup</code>/<code>restore</code>/<code>update</code>/<code>download</code> endpoints actually work end to end — this hasn't been exercised against a live CMS in this environment yet.</li>
+      <li>Propose and confirm a real update on a low-risk site, store its backup, then deliberately roll it back to see the full sequence and its audit log firsthand.</li>
+    </ul>
+    <p class="notice">See <a href="index.html#phase-25">Phase 25 on the Dashboard</a> for live step status, or <code>CLAUDE_PLAN.md</code> in the repo for the full plan.</p>
 
 <div class="teaser-cta">
   <p><strong>This is a preview.</strong> Every page in LifeModel works like this behind the scenes -- real data, real automation, nothing simulated. Unlock full functionality for <strong>$9.99/mo</strong>.</p>
-  <a class="teaser-cta-btn" href="https://globalwebmethods.com/subscribe.html">Subscribe for $9.99/mo</a>
-  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://globalwebmethods.com/download.html">Or get the free cleanup tools</a>
+  <a class="teaser-cta-btn" href="https://easylifeagents.com/subscribe.html">Subscribe for $9.99/mo</a>
+  <a class="teaser-cta-btn teaser-cta-btn-secondary" href="https://easylifeagents.com/download.html">Or get the free cleanup tools</a>
 </div>
-
 </main>
 
-<footer class="site-footer">LifeModel preview build &middot; <a href="https://globalwebmethods.com/">globalwebmethods.com</a></footer>
+<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
 
-<script src="/js/theme.js"></script>
-<script src="/js/sidenav.js"></script>
+
+
+
+
+<script src="js/theme.js"></script>
+<script src="js/teaser-nav.js"></script>
 </body>
 </html>
