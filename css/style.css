@@ -15,6 +15,16 @@
   --header-height: 65px;
   --sidenav-collapsed: 60px;
   --sidenav-expanded: 240px;
+  /* Step 563, requested directly ("links turn up blue in dark mode, make
+     them white"): a plain <a> in body text (phase-docs.html's Documentation
+     and Tutorial prose is the real, live example) had no color rule
+     anywhere in this file, so it fell back to the browser's own default
+     link blue -- which reads fine on a light background but clashes badly
+     against this theme's near-black --bg. var(--text) is effectively white
+     here (#e6e8eb), matching every other bit of dark-mode body text, with
+     the browser's own default underline left alone as the link's one
+     remaining visual signal. */
+  --link-color: var(--text);
 }
 
 /* Phase 7 Step 161: light theme -- additive token values only, same names
@@ -33,6 +43,12 @@
   --progress: #b8860b;
   --blocked: #d9483a;
   --not-started: #ccd1da;
+  /* Light mode was never reported as a problem and default link blue reads
+     fine against this theme's light --bg -- LinkText is the real CSS
+     system-color keyword for "whatever the browser's own default hyperlink
+     color is," so this is pixel-identical to having no rule at all, not a
+     second hardcoded blue that could drift from the browser's own. */
+  --link-color: LinkText;
 }
 
 * { box-sizing: border-box; }
@@ -44,6 +60,13 @@ body {
   color: var(--text);
   min-height: 100vh;
 }
+
+/* Deliberately the lowest possible specificity (a single element selector)
+   -- this is a base/fallback for plain prose links only. Every
+   already-styled link (.sidenav a, .phase-toc a, .sidenav-flyout-links a,
+   button-styled CTAs, etc.) uses a class-qualified selector and keeps
+   winning the cascade unaffected, exactly as before this rule existed. */
+a { color: var(--link-color); }
 
 header.site-header {
   display: flex;
