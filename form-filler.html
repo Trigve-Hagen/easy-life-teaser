@@ -13,19 +13,25 @@
 <title>Fill a Form — Easy Life Agents Dashboard</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
-.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
+.teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid #6aa9ff; border-radius: 10px; background: rgba(106,169,255,0.08); }
 .teaser-cta p { margin: 0 0 0.75rem; }
-.teaser-cta-btn { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: var(--accent, #6aa9ff); color: #06111f; font-weight: 600; text-decoration: none; }
-.teaser-cta-btn-secondary { background: transparent; border: 1px solid var(--accent, #6aa9ff); color: inherit; }
+.teaser-cta-btn, .teaser-cta-btn:link, .teaser-cta-btn:visited { display: inline-block; margin: 0 0.5rem 0.5rem 0; padding: 0.55rem 1.1rem; border-radius: 8px; background: #2f6fed; color: #ffffff; font-weight: 600; text-decoration: none; }
+.teaser-cta-btn:hover, .teaser-cta-btn:active { background: #2559c9; color: #ffffff; }
+.teaser-cta-btn-secondary, .teaser-cta-btn-secondary:link, .teaser-cta-btn-secondary:visited { background: transparent; border: 1px solid #6aa9ff; color: inherit; }
+.teaser-cta-btn-secondary:hover, .teaser-cta-btn-secondary:active { background: rgba(106,169,255,0.12); color: inherit; }
 .teaser-banner { text-align: center; padding: 0.6rem 1rem; background: #6aa9ff; color: #06111f; font-weight: 600; }
 .teaser-banner a { color: #06111f; text-decoration: underline; }
 .teaser-disclaimer { font-style: italic; opacity: 0.8; margin-bottom: 1rem; }
+.teaser-index-list { list-style: none; padding-left: 0; margin: 0; }
+.teaser-index-list li { margin: 0.3rem 0; }
+.teaser-index-list a { text-decoration: none; }
+.teaser-index-list a:hover { text-decoration: underline; }
 </style>
 </head>
 <body data-next-step-page="form-filler"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
   <h1>Easy Life Agents Dashboard</h1>
-  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
+  
   <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
     <span class="menu-btn"><span class="menu-btn__burger"></span></span>
   </button>
@@ -34,35 +40,38 @@
 <nav id="side-menu" class="sidenav" aria-label="Site menu">
   <a href="javascript:void(0)" id="menu-close-burger" aria-label="Close menu">&times;</a>
   <ul>
-    <li><a href="profile.html">👤 Profile</a></li>
-    <li><a href="agent.html">🤖 Agent</a></li>
-    <li><a href="form-filler.html" class="active">📝 Fill a Form</a></li>
-    <li><a href="email.html">📧 Email</a></li>
-    <li><a href="budget.html">💰 Budget</a></li>
-    <li><a href="employer.html">🏢 Employer</a></li>
-    <li><a href="projects.html">📋 Projects</a></li>
-    <li><a href="business-stats.html">📈 Business Stats</a></li>
-    <li><a href="marketing.html">📣 Marketing</a></li>
-    <li><a href="business-model.html">🏗️ Business Model</a></li>
-    <li><a href="managed-sites.html">🌐 Managed Sites</a></li>
-    <li><a href="infra.html">🖥️ Server Infra</a></li>
-    <li><a href="logs.html">📜 Logs</a></li>
-    <li><a href="security.html">🔒 Security</a></li>
-    <li><a href="conversion-templates.html">🔁 Conversion Templates</a></li>
-    <li><a href="jobs.html">💼 Jobs</a></li>
-    <li><a href="goals.html">🎯 Goals</a></li>
-    <li><a href="gifts.html">🎁 Gifts &amp; Relationships</a></li>
+    <li><a href="profile.html" aria-label="Profile"><span class="sidenav-icon" aria-hidden="true">👤</span><span class="sidenav-label">Profile</span></a></li>
+    <li><a href="agent.html" aria-label="Agent"><span class="sidenav-icon" aria-hidden="true">🤖</span><span class="sidenav-label">Agent</span></a></li>
+    <li><a href="form-filler.html" class="active" aria-label="Fill a Form"><span class="sidenav-icon" aria-hidden="true">📝</span><span class="sidenav-label">Fill a Form</span></a></li>
+    <li><a href="email.html" aria-label="Email"><span class="sidenav-icon" aria-hidden="true">📧</span><span class="sidenav-label">Email</span></a></li>
+    <li><a href="budget.html" aria-label="Budget"><span class="sidenav-icon" aria-hidden="true">💰</span><span class="sidenav-label">Budget</span></a></li>
+    <li><a href="employer.html" aria-label="Employer"><span class="sidenav-icon" aria-hidden="true">🏢</span><span class="sidenav-label">Employer</span></a></li>
+    <li><a href="projects.html" aria-label="Projects"><span class="sidenav-icon" aria-hidden="true">📋</span><span class="sidenav-label">Projects</span></a></li>
+    <li><a href="business-stats.html" aria-label="Business Stats"><span class="sidenav-icon" aria-hidden="true">📈</span><span class="sidenav-label">Business Stats</span></a></li>
+    <li><a href="marketing.html" aria-label="Marketing"><span class="sidenav-icon" aria-hidden="true">📣</span><span class="sidenav-label">Marketing</span></a></li>
+    <li><a href="business-model.html" aria-label="Business Model"><span class="sidenav-icon" aria-hidden="true">🏗️</span><span class="sidenav-label">Business Model</span></a></li>
+    <li><a href="managed-sites.html" aria-label="Managed Sites"><span class="sidenav-icon" aria-hidden="true">🌐</span><span class="sidenav-label">Managed Sites</span></a></li>
+    <li><a href="infra.html" aria-label="Server Infra"><span class="sidenav-icon" aria-hidden="true">🖥️</span><span class="sidenav-label">Server Infra</span></a></li>
+    <li><a href="logs.html" aria-label="Logs"><span class="sidenav-icon" aria-hidden="true">📜</span><span class="sidenav-label">Logs</span></a></li>
+    <li><a href="security.html" aria-label="Security"><span class="sidenav-icon" aria-hidden="true">🔒</span><span class="sidenav-label">Security</span></a></li>
+    <li><a href="conversion-templates.html" aria-label="Conversion Templates"><span class="sidenav-icon" aria-hidden="true">🔁</span><span class="sidenav-label">Conversion Templates</span></a></li>
+    <li><a href="jobs.html" aria-label="Jobs"><span class="sidenav-icon" aria-hidden="true">💼</span><span class="sidenav-label">Jobs</span></a></li>
+    <li><a href="goals.html" aria-label="Goals"><span class="sidenav-icon" aria-hidden="true">🎯</span><span class="sidenav-label">Goals</span></a></li>
+    <li><a href="gifts.html" aria-label="Gifts &amp; Relationships"><span class="sidenav-icon" aria-hidden="true">🎁</span><span class="sidenav-label">Gifts &amp; Relationships</span></a></li>
     <li class="has-children">
       <button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="cleanup-submenu">Clean your computer</button>
       <ul id="cleanup-submenu" class="submenu">
-        <li><a href="filesystem.html">🧹 Filesystem cleanup</a></li>
-        <li><a href="maintenance.html">🛠️ System maintenance</a></li>
-        <li><a href="leftovers.html">🗑️ Software leftovers</a></li>
-        <li><a href="archive.html">💾 Move to external drive</a></li>
+        <li><a href="filesystem.html" aria-label="Filesystem cleanup"><span class="sidenav-icon" aria-hidden="true">🧹</span><span class="sidenav-label">Filesystem cleanup</span></a></li>
+        <li><a href="maintenance.html" aria-label="System maintenance"><span class="sidenav-icon" aria-hidden="true">🛠️</span><span class="sidenav-label">System maintenance</span></a></li>
+        <li><a href="leftovers.html" aria-label="Software leftovers"><span class="sidenav-icon" aria-hidden="true">🗑️</span><span class="sidenav-label">Software leftovers</span></a></li>
+        <li><a href="archive.html" aria-label="Move to external drive"><span class="sidenav-icon" aria-hidden="true">💾</span><span class="sidenav-label">Move to external drive</span></a></li>
       </ul>
     </li>
-    <li><a href="upload.html">📄 Documents</a></li>
+    <li><a href="upload.html" aria-label="Documents"><span class="sidenav-icon" aria-hidden="true">📄</span><span class="sidenav-label">Documents</span></a></li>
   </ul>
+
+  <div class="sidenav-divider" aria-hidden="true"></div>
+  <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
 </nav>
 
 <main>

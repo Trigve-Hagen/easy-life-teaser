@@ -19,9 +19,19 @@
   sideMenu.style.visibility = "visible";
 
   function syncHeaderHeight() {
+    // The real product has nothing above .site-header, so its own
+    // offsetHeight alone is the right --header-height there. This export
+    // adds .teaser-banner (the "you're viewing a preview" strip) above
+    // it, which pushes .site-header down in normal flow but was never
+    // accounted for here -- .sidenav's `top: var(--header-height)` (a
+    // fixed-position element) then started too high, overlapping the
+    // banner instead of sitting flush under it. Sum both real elements'
+    // heights instead of just the header's.
     var header = document.querySelector(".site-header");
+    var banner = document.querySelector(".teaser-banner");
     if (!header) return;
-    document.documentElement.style.setProperty("--header-height", header.offsetHeight + "px");
+    var total = header.offsetHeight + (banner ? banner.offsetHeight : 0);
+    document.documentElement.style.setProperty("--header-height", total + "px");
   }
   syncHeaderHeight();
   window.addEventListener("resize", syncHeaderHeight);
