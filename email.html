@@ -10,7 +10,7 @@
   document.documentElement.dataset.theme = theme;
 })();
 </script>
-<title>Email — LifeModel Dashboard</title>
+<title>Email — Easy Life Agents Dashboard</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
 .teaser-cta { margin: 1.5rem 0; padding: 1.25rem; border: 1px solid var(--accent, #6aa9ff); border-radius: 10px; background: rgba(106,169,255,0.08); }
@@ -24,7 +24,7 @@
 </head>
 <body data-next-step-page="email"><div class="teaser-banner">You're viewing a preview build -- no live data, no working automation. <a href="https://easylifeagents.com/subscribe.html">Unlock everything for $9.99/mo</a></div>
 <header class="site-header">
-  <h1>LifeModel Dashboard</h1>
+  <h1>Easy Life Agents Dashboard</h1>
   <button id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to light theme">&#9728;&#65039;</button>
   <button id="menu-burger" type="button" aria-controls="side-menu" aria-expanded="false" aria-label="Open menu">
     <span class="menu-btn"><span class="menu-btn__burger"></span></span>
@@ -83,12 +83,12 @@
       <li>Click <strong>Propose calendar event</strong> on a staged entry to draft a <strong>Calendar proposal</strong> below — review it, then <strong>Confirm &amp; push</strong> (connected accounts only) or <strong>Discard</strong>.</li>
     </ol>
     <h3>Email Template Modules (Step 359) <span class="badge done">Built</span></h3>
-    <p>The same content-package marketplace shape Steps 315&ndash;317 already built for Marketing Plan Modules, reused rather than reinvented: a well-crafted set of categories (a "customer support triage" pack, a "recruiter screening" pack) can be built once and listed for anyone else to install instead of hand-writing rules from scratch. No <code>module_type</code> split the way marketing plans need (plain vs. video) — an email-template pack is text-only, so <code>storage_type</code> alone (a small hosted JSON bundle, or a pointer to the seller's own GitHub repo for a larger pack) is the only "where does this live" question. The manifest is a plain JSON array of <code>{category_name, match_rules, action_type, reply_template}</code> objects — the real shape <code>EmailCategory</code> already stores (a flat, comma-separated keyword string checked against subject+body, per Step 7), not a richer field this app has nowhere else to read.</p>
-    <p>On <a href="https://globalwebmethods.com/modules.html" target="_blank" rel="noopener">gwm_site's Modules page</a>'s <strong>Email Templates</strong> tab, a signed-in seller uploads either shape and approves their own pending listings from <strong>Mine</strong> (now spanning both Marketing Plan and Email Template listings in one combined queue). Back here in the Email page's <strong>Template modules</strong> section, every listed module shows up with the same three explicit WordPress-style actions as Marketing Plan Modules: <strong>Download</strong>/<strong>Install</strong> both fetch the module's real current content (a direct download for a hosted bundle, a real read-only git clone for a GitHub one) and show exactly what's inside — every category name and its action — before anything is written. <strong>Enable</strong> always re-fetches fresh and creates the real <code>EmailCategory</code> rows on the account you're viewing, skipping (never overwriting) any category whose name already exists there, the same idempotency rule Step 353's job-category seeding already uses — and reports any skip by name, not just a count, so a smaller-than-expected install is always explainable.</p>
+    <p>A content-package marketplace: a well-crafted set of categories (a "customer support triage" pack, a "recruiter screening" pack) can be built once and listed for anyone else to install instead of hand-writing rules from scratch. An email-template pack is text-only, so <code>storage_type</code> alone (a small hosted JSON bundle, or a pointer to the seller's own GitHub repo for a larger pack) is the only "where does this live" question. The manifest is a plain JSON array of <code>{category_name, match_rules, action_type, reply_template}</code> objects — the real shape <code>EmailCategory</code> already stores (a flat, comma-separated keyword string checked against subject+body, per Step 7), not a richer field this app has nowhere else to read.</p>
+    <p>On <a href="https://easylifeagents.com/modules.html" target="_blank" rel="noopener">gwm_site's Modules page</a>'s <strong>Email Templates</strong> tab, a signed-in seller uploads either shape and approves their own pending listings from <strong>Mine</strong>. Back here in the Email page's <strong>Template modules</strong> section, every listed module shows up with three separate, explicit WordPress-style actions: <strong>Download</strong>/<strong>Install</strong> both fetch the module's real current content (a direct download for a hosted bundle, a real read-only git clone for a GitHub one) and show exactly what's inside — every category name and its action — before anything is written. <strong>Enable</strong> always re-fetches fresh and creates the real <code>EmailCategory</code> rows on the account you're viewing, skipping (never overwriting) any category whose name already exists there, the same idempotency rule Step 353's job-category seeding already uses — and reports any skip by name, not just a count, so a smaller-than-expected install is always explainable.</p>
     <h4>Tutorial</h4>
     <ol>
       <li>On the Email page, select the account with the categories you want to package, and click <strong>Export categories for a module</strong> in the Categories section — this downloads a real <code>categories.json</code> built from your own working categories.</li>
-      <li>On <a href="https://globalwebmethods.com/modules.html" target="_blank" rel="noopener">gwm_site's Modules page</a>, sign in, open the <strong>Email Templates</strong> tab, and upload that file (or paste a repo URL/commit if you pushed it to your own GitHub repo instead).</li>
+      <li>On <a href="https://easylifeagents.com/modules.html" target="_blank" rel="noopener">gwm_site's Modules page</a>, sign in, open the <strong>Email Templates</strong> tab, and upload that file (or paste a repo URL/commit if you pushed it to your own GitHub repo instead).</li>
       <li>On the <strong>Mine</strong> tab, click <strong>Approve</strong> on your new listing so it becomes publicly listed.</li>
       <li>Back on the Email page's <strong>Template modules</strong> section, click <strong>Refresh</strong> and find your listing.</li>
       <li>Click <strong>Download</strong> or <strong>Install</strong> — either fetches the real content and shows every category name and action it contains.</li>
@@ -102,7 +102,8 @@
 </div>
 </main>
 
-<footer class="site-footer">Served locally by nginx on WSL2 &middot; dashboard.site</footer>
+<footer class="site-footer" id="site-footer">Easy Life Agents</footer>
+
 
 
 
